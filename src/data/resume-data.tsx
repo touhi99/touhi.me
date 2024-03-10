@@ -1,278 +1,231 @@
-import {
-  AmbitLogo,
-  BarepapersLogo,
-  BimLogo,
-  CDGOLogo,
-  ClevertechLogo,
-  ConsultlyLogo,
-  EvercastLogo,
-  Howdy,
-  JarockiMeLogo,
-  JojoMobileLogo,
-  Minimal,
-  MobileVikingsLogo,
-  MonitoLogo,
-  NSNLogo,
-  ParabolLogo,
-  TastyCloudLogo,
-  YearProgressLogo,
-} from "@/images/logos";
-import { GitHubIcon, LinkedInIcon, XIcon } from "@/components/icons";
+import ConsultlyLogo from "../images/logos/consultly.svg";
+import AmbitLogo from "../images/logos/ambit.png";
+import BarepapersLogo from "../images/logos/barepapers.svg";
+import BimLogo from "../images/logos/bim.png";
+import CDGOLogo from "../images/logos/cdgo.png";
+import ClevertechLogo from "../images/logos/clevertech.png";
+import EvercastLogo from "../images/logos/evercast.svg";
+import Howdy from "../images/logos/howdy.png";
+import JarockiMeLogo from "../images/logos/jarocki.svg";
+import JojoMobileLogo from "../images/logos/jojomobile.png";
+import MonitoLogo from "../images/logos/monito.svg";
+import MobileVikingsLogo from "../images/logos/mv.png";
+import NSNLogo from "../images/logos/nsn.svg";
+import ParabolLogo from "../images/logos/parabol.svg";
+import TastyCloudLogo from "../images/logos/tastycloud.png";
+import YearProgressLogo from "../images/logos/yearprogress.svg";
+import Minimal from "../images/logos/minimal.svg";
+import { GitHubIcon } from "../components/icons/GitHubIcon";
+import { LinkedInIcon } from "../components/icons/LinkedInIcon";
+import { XIcon } from "../components/icons/XIcon";
 
 export const RESUME_DATA = {
-  name: "Bartosz Jarocki",
-  initials: "BJ",
-  location: "Wrocław, Poland, CET",
-  locationLink: "https://www.google.com/maps/place/Wrocław",
+  name: "Touhidul Alam",
+  initials: "Touhi",
+  location: "Munich, Germany, CET",
+  locationLink: "https://www.google.com/maps/place/Munich",
   about:
-    "Full Stack Engineer focused on building products with extra attention to detail",
+    "NLP/AI Engineer, currently heavily focusing on LLM/Generative AI",
   summary:
-    "As a Full Stack Engineer, I have successfully taken multiple products from 0 to 1. I lead teams effectively, ensuring an environment where people can do their best work. Currently, I work mostly with TypeScript, React, Node.js, and GraphQL. I have over 8 years of experience in working remotely with companies all around the world.",
-  avatarUrl: "https://avatars.githubusercontent.com/u/1017620?v=4",
-  personalWebsiteUrl: "https://jarocki.me",
+    "As an NLP Specialist, I turn business challenges into data solutions. My expertise includes NLP, ML, and LLM. At Accenture, \
+     I'm focused on creating Generative AI architectures, bringing innovative solutions to life.",
+  avatarUrl: "https://media.licdn.com/dms/image/C4D03AQEpHNZm7I3p0A/profile-displayphoto-shrink_800_800/0/1566726532818?e=1715817600&v=beta&t=vJCKdHTPbDDWsMGX-hBZm_AGIlb82xmAJI_W4RJGYjE",
+  personalWebsiteUrl: "https://touhi.me",
   contact: {
-    email: "bartosz.jarocki@hey.com",
-    tel: "+48530213401",
+    email: "tapos.alam@gmail.com",
+    tel: "+4915156037142",
     social: [
       {
         name: "GitHub",
-        url: "https://github.com/BartoszJarocki",
+        url: "https://github.com/touhi99",
         icon: GitHubIcon,
       },
       {
         name: "LinkedIn",
-        url: "https://www.linkedin.com/in/bjarocki/",
+        url: "https://www.linkedin.com/in/touhi/",
         icon: LinkedInIcon,
-      },
-      {
-        name: "X",
-        url: "https://x.com/BartoszJarocki",
-        icon: XIcon,
       },
     ],
   },
   education: [
     {
-      school: "Wrocław University of Technology",
-      degree: "Bachelor's Degree in Control systems engineering and Robotics",
-      start: "2007",
-      end: "2010",
+      school: "University of Stuttgart",
+      degree: "Master's Degree in Computational Linguistics",
+      start: "2017",
+      end: "2020",
     },
+    {
+      school: "Islamic University of Technology",
+      degree: "Bachelor's Degree in Computer Science and Engineering",
+      start: "2011",
+      end: "2015",
+    }
   ],
   work: [
     {
-      company: "Parabol",
-      link: "https://parabol.co",
-      badges: ["Remote"],
-      title: "Senior Full Stack Developer",
+      company: "Accenture",
+      link: "https://accenture.com",
+      badges: ["Munich", "Frankfurt"],
+      title: "NLP Specialist",
       logo: ParabolLogo,
-      start: "2021",
-      end: "2024",
-      description:
-        "Implemented new features, led squad, worked on improving the way developers ship the code, started migration from Emotion to Tailwind CSS and more. Technologies: React, TypeScript, GraphQL",
+      start: "2020",
+      end: "Present",
+      description:"Implemented LLM-based applications and launched an NLP recommendation system. Developed an NLP backend for semantic search enhancement. \
+      Led as a Generative AI expert, driving team leadership, client workshops, and innovative hackathons for GenAI tech demonstrations. "
     },
     {
-      company: "Clevertech",
-      link: "https://clevertech.biz",
-      badges: ["Remote"],
-      title: "Lead Android Developer → Full Stack Developer",
+      company: "Fraunhofer IIS",
+      link: "https://www.iis.fraunhofer.de/",
+      badges: ["Erlangen"],
+      title: "Research Assistant",
       logo: ClevertechLogo,
-      start: "2015",
-      end: "2021",
+      start: "2019",
+      end: "2020",
       description:
-        "Created Android mobile apps and led teams for companies like Vision Media, DKMS, or AAA. Built live streaming application for Evercast from scratch. Technologies: Android, Kotlin, React, TypeScript, GraphQL",
+        "Developing and integrating a Deep learning based temporal tagger for Voice Assistants as a part of Master thesis.",
     },
     {
-      company: "Jojo Mobile",
-      link: "https://bsgroup.eu/",
-      badges: [],
-      title: "Android Developer → Lead Android Developer",
-      logo: JojoMobileLogo,
-      start: "2012",
-      end: "2015",
+      company: "Accenture",
+      link: "https://accenture.com",
+      badges: ["Munich"],
+      title: "Student Intern",
+      logo: ParabolLogo,
+      start: "2018",
+      end: "2019",
       description:
-        "Built an Android team, created Android apps for biggest Polish companies like LOT, Polskie Radio, Agora, PolskaPress",
+        "Developed a 3D holographic chatbot, enhancing user engagement with immersive interaction",
     },
     {
-      company: "Nokia Siemens Networks",
-      link: "https://www.nokia.com",
-      badges: [],
-      title: "C/C++ Developer",
+      company: "Smart Digital GmbH",
+      link: "https://www.smart-digital.de/",
+      badges: ["Gerlingen"],
+      title: "Student Assistant",
       logo: NSNLogo,
-      start: "2010",
-      end: "2012",
-      description: "Creating and testing software for LTE base stations",
+      start: "2017",
+      end: "2018",
+      description: "Implemented a real-time anomaly detection system for time-series data. Handled and visualized data within a Data Management System.      ",
+    },
+    {
+      company: "Panacea Live Limited",
+      link: "https://panacea.live/",
+      badges: ["Dhaka"],
+      title: "Backend Developer",
+      logo: NSNLogo,
+      start: "2016",
+      end: "2017",
+      description: "Developed the Panacea Web system. Explored potential business use cases for fraud detection technology.      ",
     },
   ],
   skills: [
-    "JavaScript",
-    "TypeScript",
-    "React/Next.js/Remix",
-    "Node.js",
-    "GraphQL",
-    "Relay",
-    "WebRTC",
+    "Python",
+    "NLP",
+    "ML",
+    "LLM",
+    "Javascript",
+    "Pytorch",
+    "SQL",
+    "Azure",
+    "AWS",
+    "MLOps",
   ],
   projects: [
     {
-      title: "Consultly",
-      techStack: [
-        "Side Project",
-        "TypeScript",
-        "Next.js",
-        "Vite",
-        "GraphQL",
-        "WebRTC",
-      ],
-      description: "A platform to build and grow your online business",
-      logo: ConsultlyLogo,
-      link: {
-        label: "consultly.com",
-        href: "https://consultly.com/",
-      },
-    },
-    {
-      title: "Monito",
-      techStack: ["Side Project", "TypeScript", "Next.js", "Browser Extension"],
+      title: "Tags generation",
+      techStack: ["Python", "LLM", "Mistral-7B"],
       description:
-        "Browser extension that records everything happening in a web application",
-      logo: MonitoLogo,
-      link: {
-        label: "monito.dev",
-        href: "https://monito.dev/",
-      },
-    },
-    {
-      title: "Jarocki.me",
-      techStack: ["Side Project", "Next.js", "MDX"],
-      description:
-        "My personal website and blog. Built with Next.js and Notion API",
-      logo: JarockiMeLogo,
-      link: {
-        label: "github.com",
-        href: "https://jarocki.me/",
-      },
-    },
-    {
-      title: "Minimal",
-      techStack: ["Side Project", "Next.js", "Puppeteer"],
-      description:
-        "Minimalist calendars, habit trackers and planners generator",
-      logo: Minimal,
-      link: {
-        label: "useminimal.com",
-        href: "https://useminimal.com/",
-      },
-    },
-    {
-      title: "Barepapers",
-      techStack: ["Side Project", "Next.js", "Puppeteer"],
-      description:
-        "Generates beautiful wallpapers using random shapes and gradients",
+        "Simple prototyping of generating tags from forums with Open-source LLM",
       logo: BarepapersLogo,
       link: {
-        label: "barepapers.com",
-        href: "https://barepapers.com/",
+        label: "Github",
+        href: "https://github.com/touhi99/tags-generation",
       },
     },
     {
-      title: "Year progress",
-      techStack: ["Side Project", "TypeScript", "Next.js"],
-      description: "Tracks current year progress and displays a countdown",
-      logo: YearProgressLogo,
-      link: {
-        label: "getyearprogress.com",
-        href: "https://getyearprogress.com/",
-      },
-    },
-    {
-      title: "Parabol",
+      title: "AI Music Generation",
       techStack: [
-        "Full Stack Developer",
-        "TypeScript",
-        "React",
-        "Node.js",
-        "GraphQL",
+        "Python",
+        "Language Modeling",
+        "Pytorch",
       ],
-      description:
-        "The Agile meeting co-pilot that delivers better meetings with less effort",
-      logo: ParabolLogo,
+      description: "A simple language modeling project to generate music trained by MIDI files pattern", 
+      logo: ConsultlyLogo,
       link: {
-        label: "github.com",
-        href: "https://parabol.co/",
+        label: "Github",
+        href: "https://github.com/touhi99/Generate-music",
       },
     },
     {
-      title: "Evercast",
+      title: "Dialogue Act Classification",
+      techStack: ["Python", "Keras", "Ensemble model"],
+      description:
+        "A Simple Dialogue Act Classification project using Keras from speech and text with an Ensemble model",
+      logo: MonitoLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/DL_Dialogue_act_classification",
+      },
+    },
+    {
+      title: "Emotion Classification from Twitter text and image",
+      techStack: ["Python", "Perceptron"],
+      description:
+        "Document Level Emotion Classification from Twitter Text and Images",
+      logo: JarockiMeLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/DL_Dialogue_act_classification",
+      },
+    },
+    {
+      title: "Minimalistic Language Modeling",
+      techStack: ["Python"],
+      description:
+        "A Simple n-gram language modeling from scratch to understand the basic concept of language modeling",
+      logo: Minimal,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/N-gram-Language-model",
+      },
+    },
+  ],
+  Publications: [
+    {
+      title: "Enhancing Pipeline-Based Conversational Agents with Large Language Models",
+      techStack: ["Python", "GPT-4"],
+      description:
+        "This study examines enhancing pipeline-based conversational agents with GPT-4, focusing on a hybrid approach that combines LLM strengths with existing system safeguards.        ",
+      logo: BarepapersLogo,
+      link: {
+        label: "arXiv",
+        href: "https://arxiv.org/pdf/2309.03748.pdf",
+      },
+    },
+    {
+      title: "New Domain, Major Effort? How Much Data is Necessary to Adapt a Temporal Tagger to the Voice Assistant Domain",
       techStack: [
-        "Lead Frontend Developer",
-
-        "TypeScript",
-        "React",
-        "Node.js",
-        "GraphQL",
+        "Python",
+        "BERT",
+        "Keras",
       ],
-      description:
-        "Creative collaboration platform that combines video conferencing and HD media streaming",
-      logo: EvercastLogo,
+      description: "The study introduces DA-Time, a hybrid temporal tagger for voice assistants, \
+      proving that minimal in-domain data via transfer learning significantly enhances temporal expression recognition in diverse domains.", 
+      logo: ConsultlyLogo,
       link: {
-        label: "evercast.us",
-        href: "https://www.evercast.us/",
+        label: "aclweb",
+        href: "https://aclanthology.org/2021.iwcs-1.14/",
       },
     },
     {
-      title: "Mobile Vikings",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
+      title: "PÂTÉ: A Corpus of Temporal Expressions for the In-car Voice Assistant Domain",
+      techStack: ["Python"],
       description:
-        "Android application for leading virtual mobile operator in Poland",
-      logo: MobileVikingsLogo,
+        "This study introduces a crowdsourcing method to collect and annotate natural-language commands with temporal expressions for AI voice assistants, \
+        differing from typical domains, to enhance their interaction with applications.",
+      logo: MonitoLogo,
       link: {
-        label: "mobilevikings.pl",
-        href: "https://mobilevikings.pl/",
+        label: "aclweb",
+        href: "https://aclanthology.org/2020.lrec-1.66.pdf",
       },
-    },
-    {
-      title: "Howdy",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Howdy is a place for you to join communities you care about",
-      logo: Howdy,
-      link: {
-        label: "play.google.com",
-        href: "https://howdy.co/",
-      },
-    },
-    {
-      title: "Tastycloud",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Android application for managing and displaying restaurant menus in kiosk mode",
-      logo: TastyCloudLogo,
-      link: {
-        label: "tastycloud.fr",
-        href: "https://www.tastycloud.fr/",
-      },
-    },
-    {
-      title: "Ambit",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Android application that helps with sharing your contact details",
-      logo: AmbitLogo,
-    },
-    {
-      title: "Bim",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Android application that helps with booking a table in a restaurants",
-      logo: BimLogo,
-    },
-    {
-      title: "Canal Digital GO",
-      techStack: ["Lead Android Developer", "Android", "Kotlin"],
-      description:
-        "Video streaming mobile application for Canal Digital subscribers",
-      logo: CDGOLogo,
     },
   ],
 } as const;
