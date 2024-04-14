@@ -130,6 +130,28 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
+      title: "LLM Multi-Agent",
+      techStack: ["Python", "OpenAI", "Langchain", "Langgraph", "Streamlit"],
+      description:
+        "Simple multi-agent system with external search api to search, analyze, generate content",
+      logo: BarepapersLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/genai-job-agents",
+      },
+    },
+    {
+      title: "Knowledge Graph LLM Agent",
+      techStack: ["Python", "OpenAI", "Neo4J", "Langchain", "Streamlit"],
+      description:
+        "A knowledge-graph based LLM agent to perform search with different Cypher query",
+      logo: BarepapersLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/tags-generation",
+      },
+    },
+    {
       title: "Tags generation",
       techStack: ["Python", "LLM", "Mistral-7B"],
       description:
