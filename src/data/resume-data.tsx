@@ -27,8 +27,8 @@ export const RESUME_DATA = {
   about:
     "NLP/AI Engineer, currently heavily focusing on LLM/Generative AI",
   summary:
-    "As an NLP Specialist, I turn business challenges into data solutions. My expertise includes NLP, ML, and LLM. At Accenture, \
-     I'm focused on creating Generative AI architectures, bringing innovative solutions to life.",
+    "As an NLP Specialist, I transform business challenges into data-driven solutions. My expertise encompasses NLP, \
+    ML, and LLMs. At Accenture, I am dedicated to developing Generative AI architecture that deliver innovative solutions",
   avatarUrl: "https://media.licdn.com/dms/image/C4D03AQEpHNZm7I3p0A/profile-displayphoto-shrink_800_800/0/1566726532818?e=1715817600&v=beta&t=vJCKdHTPbDDWsMGX-hBZm_AGIlb82xmAJI_W4RJGYjE",
   personalWebsiteUrl: "https://touhi.me",
   contact: {
@@ -70,8 +70,9 @@ export const RESUME_DATA = {
       logo: ParabolLogo,
       start: "2020",
       end: "Present",
-      description:"Implemented LLM-based applications and launched an NLP recommendation system. Developed an NLP backend for semantic search enhancement. \
-      Led as a Generative AI expert, driving team leadership, client workshops, and innovative hackathons for GenAI tech demonstrations. "
+      description:"Facilitating LLM-based applications (RAG, Agents, Fine-tuning) \
+      Developed an NLP recommendation system on production. Developed an NLP backend for semantic search enhancement. \
+      Leading as a Generative AI expert, driving backend team, client PoC/workshops, and innovative hackathons for GenAI tech demonstrations. "
     },
     {
       company: "Fraunhofer IIS",
@@ -93,7 +94,7 @@ export const RESUME_DATA = {
       start: "2018",
       end: "2019",
       description:
-        "Developed a 3D holographic chatbot, enhancing user engagement with immersive interaction",
+        "Developed a 3D holographic chatbot, increasing user engagement through interactive experiences.",
     },
     {
       company: "Smart Digital GmbH",
@@ -103,7 +104,8 @@ export const RESUME_DATA = {
       logo: NSNLogo,
       start: "2017",
       end: "2018",
-      description: "Implemented a real-time anomaly detection system for time-series data. Handled and visualized data within a Data Management System.      ",
+      description: "Implemented a real-time anomaly detection system using time-series data to monitor and alert on\
+      operational discrepancies, enhancing system reliability ",
     },
     {
       company: "Panacea Live Limited",
@@ -121,9 +123,13 @@ export const RESUME_DATA = {
     "NLP",
     "ML",
     "LLM",
+    "Langchain",
+    "Haystack",
+    "Vector DB",
     "Javascript",
     "Pytorch",
     "SQL",
+    "Cypher",
     "Azure",
     "AWS",
     "MLOps",
@@ -148,7 +154,7 @@ export const RESUME_DATA = {
       logo: BarepapersLogo,
       link: {
         label: "Github",
-        href: "https://github.com/touhi99/tags-generation",
+        href: "https://github.com/touhi99/msf-agents",
       },
     },
     {
@@ -160,6 +166,20 @@ export const RESUME_DATA = {
       link: {
         label: "Github",
         href: "https://github.com/touhi99/tags-generation",
+      },
+    },
+    {
+      title: "DA-Time",
+      techStack: [
+        "Python",
+        "Bert",
+        "Keras",
+      ],
+      description: "A domain-adapted temporal expression recognizer for the English Voice Assistant domain", 
+      logo: ConsultlyLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/DA-Time",
       },
     },
     {
