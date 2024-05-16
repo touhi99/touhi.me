@@ -29,7 +29,7 @@ export const RESUME_DATA = {
   summary:
     "As an NLP Specialist, I transform business challenges into data-driven solutions. My expertise encompasses NLP, \
     ML, and LLMs. At Accenture, I am dedicated to developing Generative AI architecture that deliver innovative solutions",
-  avatarUrl: "https://media.licdn.com/dms/image/C4D03AQEpHNZm7I3p0A/profile-displayphoto-shrink_800_800/0/1566726532818?e=1715817600&v=beta&t=vJCKdHTPbDDWsMGX-hBZm_AGIlb82xmAJI_W4RJGYjE",
+  avatarUrl: "https://cv-me-git-main-touhidul-alams-projects.vercel.app/touhi.jpeg",
   personalWebsiteUrl: "https://touhi.me",
   contact: {
     email: "tapos.alam@gmail.com",
