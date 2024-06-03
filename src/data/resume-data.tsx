@@ -25,7 +25,7 @@ export const RESUME_DATA = {
   location: "Munich, Germany, CET",
   locationLink: "https://www.google.com/maps/place/Munich",
   about:
-    "NLP/AI Engineer, currently heavily focusing on LLM/Generative AI",
+    "NLP/AI Engineering Lead | Deep Expertise in LLMs and Generative AI Innovations",
   summary:
     "As an NLP Specialist, I transform business challenges into data-driven solutions. My expertise encompasses NLP, \
     ML, and LLMs. At Accenture, I am dedicated to developing Generative AI architecture that deliver innovative solutions",
@@ -136,10 +136,21 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
-      title: "LLM Multi-Agent",
+      title: "A Voice-based LLM Crew Agent",
+      techStack: ["Python", "OpenAI", "Langchain", "CrewAI", "Streamlit", "Elevenlabs", "Crawler"],
+      description:
+        "A text/voice-based multi-agent system with RAG in specialized domain",
+      logo: BarepapersLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/tldr-ai-news-crew",
+      },
+    },
+    {
+      title: "LLM Multi-Agent for Search",
       techStack: ["Python", "OpenAI", "Langchain", "Langgraph", "Streamlit"],
       description:
-        "Simple multi-agent system with external search api to search, analyze, generate content",
+        "Simple multi-agent system with external search API to search, analyze, generate content",
       logo: BarepapersLogo,
       link: {
         label: "Github",
