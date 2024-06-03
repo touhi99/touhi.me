@@ -6,7 +6,7 @@ import CDGOLogo from "../images/logos/cdgo.png";
 import ClevertechLogo from "../images/logos/clevertech.png";
 import EvercastLogo from "../images/logos/evercast.svg";
 import Howdy from "../images/logos/howdy.png";
-import JarockiMeLogo from "../images/logos/jarocki.svg";
+import TouhiMeLogo from "../images/logos/touhi.svg"
 import JojoMobileLogo from "../images/logos/jojomobile.png";
 import MonitoLogo from "../images/logos/monito.svg";
 import MobileVikingsLogo from "../images/logos/mv.png";
@@ -223,7 +223,7 @@ export const RESUME_DATA = {
       techStack: ["Python", "Perceptron"],
       description:
         "Document Level Emotion Classification from Twitter Text and Images",
-      logo: JarockiMeLogo,
+      logo: TouhiMeLogo,
       link: {
         label: "Github",
         href: "https://github.com/touhi99/DL_Dialogue_act_classification",
