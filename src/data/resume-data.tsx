@@ -25,15 +25,17 @@ export const RESUME_DATA = {
   location: "Munich, Germany, CET",
   locationLink: "https://www.google.com/maps/place/Munich",
   about:
-    "NLP/AI Engineering Lead | Deep Expertise in LLMs and Generative AI Innovations",
+    "GenAI Solution Architect | NLP Specialist",
   summary:
-    "As an NLP Specialist, I transform business challenges into data-driven solutions. My expertise encompasses NLP, \
-    ML, and LLMs. At Accenture, I am dedicated to developing Generative AI architecture that deliver innovative solutions",
+    "As a Senior AI Solution Architect, I design and deliver enterprise-grade Generative AI systems, from \
+  scalable RAG reference architectures to production LLM evaluation frameworks. At Accenture, I lead \
+  technical delivery for on-prem/sovereign AI initiatives, drive client workshops and hackathons to \
+  validate GenAI use cases, and mentor engineers on architecture decisions balancing security, compliance, \
+  and scale.",
   avatarUrl: "https://cv-me-git-main-touhidul-alams-projects.vercel.app/touhi.jpeg",
   personalWebsiteUrl: "https://touhi.me",
   contact: {
     email: "tapos.alam@gmail.com",
-    tel: "+4915156037142",
     social: [
       {
         name: "GitHub",
@@ -66,13 +68,18 @@ export const RESUME_DATA = {
       company: "Accenture",
       link: "https://accenture.com",
       badges: ["Munich", "Frankfurt"],
-      title: "NLP Specialist",
+      title: "GenAI Solution Architect",
       logo: ParabolLogo,
       start: "2020",
       end: "Present",
-      description:"Facilitating LLM-based applications (RAG, Agents, Fine-tuning) \
-      Developed an NLP recommendation system on production. Developed an NLP backend for semantic search enhancement. \
-      Leading as a Generative AI expert, driving backend team, client PoC/workshops, and innovative hackathons for GenAI tech demonstrations. "
+      description:"Tech Lead for enterprise on-prem/sovereign AI delivery — owned solution architecture and platform \
+      engineering, defining a scalable RAG reference architecture and operational standards for rollout. Built an \
+      evaluation & optimization workflow for LLM applications, introducing an eval framework and observability to \
+      track quality, latency, and cost in production. Shipped an NLP recommendation system to production, improving \
+      content relevance and user engagement. Core member of Tech Innovation, running client discovery workshops, \
+      leading internal hackathons, and driving rapid prototyping (PoCs/MVPs) to validate AI use cases. Mentored \
+      junior engineers and guided key architecture decisions, keeping delivery aligned with security, compliance, \
+      and scalability constraints."
     },
     {
       company: "Fraunhofer IIS",
@@ -123,15 +130,24 @@ export const RESUME_DATA = {
     "NLP",
     "ML",
     "LLM",
+    "RAG",
+    "Fine-tuning",
+    "Multi-agent Systems",
+    "LLM Evaluation",
     "Langchain",
     "Haystack",
+    "Langfuse",
     "Vector DB",
-    "Javascript",
-    "Pytorch",
+    "Graph DB",
+    "FastAPI",
     "SQL",
     "Cypher",
+    "Pytorch",
     "Azure",
     "AWS",
+    "Docker",
+    "Kubernetes",
+    "CI/CD",
     "MLOps",
   ],
   projects: [
