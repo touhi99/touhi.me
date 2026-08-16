@@ -36,6 +36,7 @@ export const RESUME_DATA = {
   personalWebsiteUrl: "https://touhi.me",
   contact: {
     email: "tapos.alam@gmail.com",
+    tel: "",
     social: [
       {
         name: "GitHub",
