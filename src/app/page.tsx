@@ -50,16 +50,17 @@ export default function Page() {
                 </a>
               ) : null}
               {RESUME_DATA.contact.social.map((social) => (
-                <Button
+                <a
                   key={social.name}
-                  className="h-8 w-8"
-                  variant="outline"
-                  size="icon"
+                  href={social.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
                 >
-                  <a href={social.url}>
+                  <Button className="h-8 w-8" variant="outline" size="icon">
                     <social.icon className="h-4 w-4" />
-                  </a>
-                </Button>
+                  </Button>
+                </a>
               ))}
             </div>
             <div className="hidden flex-col gap-x-1 font-mono text-sm text-muted-foreground print:flex">
@@ -91,7 +92,7 @@ export default function Page() {
           <h2 className="text-xl font-bold">Work Experience</h2>
           {RESUME_DATA.work.map((work) => {
             return (
-              <Card key={work.company}>
+              <Card key={`${work.company}-${work.start}`}>
                 <CardHeader>
                   <div className="flex items-center justify-between gap-x-2 text-base">
                     <h3 className="inline-flex items-center justify-center gap-x-1 font-semibold leading-none">

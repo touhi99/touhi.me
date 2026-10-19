@@ -25,13 +25,14 @@ export const RESUME_DATA = {
   location: "Munich, Germany, CET",
   locationLink: "https://www.google.com/maps/place/Munich",
   about:
-    "GenAI Solution Architect | NLP Specialist",
+    "Senior Solution Engineer @ deepset | GenAI & NLP Specialist",
   summary:
-    "As a Senior AI Solution Architect, I design and deliver enterprise-grade Generative AI systems, from \
-  scalable RAG reference architectures to production LLM evaluation frameworks. At Accenture, I lead \
-  technical delivery for on-prem/sovereign AI initiatives, drive client workshops and hackathons to \
-  validate GenAI use cases, and mentor engineers on architecture decisions balancing security, compliance, \
-  and scale.",
+    "As a Senior Solution Engineer / Architect at deepset, I work hands-on with enterprise customers as a \
+  forward deployed engineer on the Haystack Enterprise Platform, helping them design, build, and ship \
+  production-grade Generative AI applications. Previously at \
+  Accenture, I led technical delivery for on-prem/sovereign AI initiatives, drove client workshops and \
+  hackathons to validate GenAI use cases, and mentored engineers on architecture decisions balancing \
+  security, compliance, and scale.",
   avatarUrl: "https://cv-me-git-main-touhidul-alams-projects.vercel.app/touhi.jpeg",
   personalWebsiteUrl: "https://touhi.me",
   contact: {
@@ -66,13 +67,25 @@ export const RESUME_DATA = {
   ],
   work: [
     {
+      company: "deepset",
+      link: "https://www.deepset.ai",
+      badges: ["Munich"],
+      title: "Senior Solution Engineer",
+      logo: ParabolLogo,
+      start: "2026",
+      end: "Present",
+      description:
+        "Solution engineering and forward deployed engineering (FDE) for the Haystack Enterprise Platform, working \
+        with enterprise customers to design, build, and deploy production GenAI applications.",
+    },
+    {
       company: "Accenture",
       link: "https://accenture.com",
       badges: ["Munich", "Frankfurt"],
       title: "GenAI Solution Architect",
       logo: ParabolLogo,
       start: "2020",
-      end: "Present",
+      end: "2026",
       description:"Tech Lead for enterprise on-prem/sovereign AI delivery — owned solution architecture and platform \
       engineering, defining a scalable RAG reference architecture and operational standards for rollout. Built an \
       evaluation & optimization workflow for LLM applications, introducing an eval framework and observability to \
@@ -135,7 +148,7 @@ export const RESUME_DATA = {
     "Fine-tuning",
     "Multi-agent Systems",
     "LLM Evaluation",
-    "Langchain",
+    "LangChain",
     "Haystack",
     "Langfuse",
     "Vector DB",
@@ -143,7 +156,7 @@ export const RESUME_DATA = {
     "FastAPI",
     "SQL",
     "Cypher",
-    "Pytorch",
+    "PyTorch",
     "Azure",
     "AWS",
     "Docker",
@@ -154,7 +167,7 @@ export const RESUME_DATA = {
   projects: [
     {
       title: "A Voice-based LLM Crew Agent",
-      techStack: ["Python", "OpenAI", "Langchain", "CrewAI", "Streamlit", "Elevenlabs", "Crawler"],
+      techStack: ["Python", "OpenAI", "LangChain", "CrewAI", "Streamlit", "Elevenlabs", "Crawler"],
       description:
         "A text/voice-based multi-agent system with RAG in specialized domain",
       logo: BarepapersLogo,
@@ -165,7 +178,7 @@ export const RESUME_DATA = {
     },
     {
       title: "LLM Multi-Agent for Search",
-      techStack: ["Python", "OpenAI", "Langchain", "Langgraph", "Streamlit"],
+      techStack: ["Python", "OpenAI", "LangChain", "LangGraph", "Streamlit"],
       description:
         "Simple multi-agent system with external search API to search, analyze, generate content",
       logo: BarepapersLogo,
@@ -176,7 +189,7 @@ export const RESUME_DATA = {
     },
     {
       title: "Knowledge Graph LLM Agent",
-      techStack: ["Python", "OpenAI", "Neo4J", "Langchain", "Streamlit"],
+      techStack: ["Python", "OpenAI", "Neo4j", "LangChain", "Streamlit"],
       description:
         "A knowledge-graph based LLM agent to perform search with different Cypher query",
       logo: BarepapersLogo,
@@ -200,7 +213,7 @@ export const RESUME_DATA = {
       title: "DA-Time",
       techStack: [
         "Python",
-        "Bert",
+        "BERT",
         "Keras",
       ],
       description: "A domain-adapted temporal expression recognizer for the English Voice Assistant domain", 
@@ -215,7 +228,7 @@ export const RESUME_DATA = {
       techStack: [
         "Python",
         "Language Modeling",
-        "Pytorch",
+        "PyTorch",
       ],
       description: "A simple language modeling project to generate music trained by MIDI files pattern", 
       logo: ConsultlyLogo,
@@ -243,7 +256,7 @@ export const RESUME_DATA = {
       logo: TouhiMeLogo,
       link: {
         label: "Github",
-        href: "https://github.com/touhi99/DL_Dialogue_act_classification",
+        href: "https://github.com/touhi99/Teamlab_emotion_detection",
       },
     },
     {
