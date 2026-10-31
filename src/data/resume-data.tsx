@@ -21,11 +21,13 @@ import { XIcon } from "../components/icons/XIcon";
 
 export const RESUME_DATA = {
   name: "Touhidul Alam",
-  initials: "Touhi",
-  location: "Munich, Germany, CET",
-  locationLink: "https://www.google.com/maps/place/Munich",
-  about:
-    "Senior Solution Engineer @ deepset | GenAI & NLP Specialist",
+  initials: "TA",
+  role: "Senior Solution Engineer",
+  company: "deepset",
+  specialties: "GenAI & NLP Specialist",
+  location: "Munich, Germany",
+  timezone: "CET",
+  locationLink: "https://www.google.com/maps/place/Munich,+Germany",
   summary:
     "As a Senior Solution Engineer / Architect at deepset, I work hands-on with enterprise customers as a \
   forward deployed engineer on the Haystack Enterprise Platform, helping them design, build, and ship \
@@ -33,7 +35,7 @@ export const RESUME_DATA = {
   Accenture, I led technical delivery for on-prem/sovereign AI initiatives, drove client workshops and \
   hackathons to validate GenAI use cases, and mentored engineers on architecture decisions balancing \
   security, compliance, and scale.",
-  avatarUrl: "https://cv-me-git-main-touhidul-alams-projects.vercel.app/touhi.jpeg",
+  avatarUrl: "/touhi.jpg",
   personalWebsiteUrl: "https://touhi.me",
   contact: {
     email: "tapos.alam@gmail.com",
@@ -75,8 +77,7 @@ export const RESUME_DATA = {
       start: "2026",
       end: "Present",
       description:
-        "Solution engineering and forward deployed engineering (FDE) for the Haystack Enterprise Platform, working \
-        with enterprise customers to design, build, and deploy production GenAI applications.",
+        "Forward deployed engineer for the Haystack Enterprise Platform, partnering with enterprise customers to design, build, and ship production-grade GenAI applications.",
     },
     {
       company: "Accenture",
@@ -86,14 +87,15 @@ export const RESUME_DATA = {
       logo: ParabolLogo,
       start: "2020",
       end: "2026",
-      description:"Tech Lead for enterprise on-prem/sovereign AI delivery — owned solution architecture and platform \
-      engineering, defining a scalable RAG reference architecture and operational standards for rollout. Built an \
-      evaluation & optimization workflow for LLM applications, introducing an eval framework and observability to \
-      track quality, latency, and cost in production. Shipped an NLP recommendation system to production, improving \
-      content relevance and user engagement. Core member of Tech Innovation, running client discovery workshops, \
-      leading internal hackathons, and driving rapid prototyping (PoCs/MVPs) to validate AI use cases. Mentored \
-      junior engineers and guided key architecture decisions, keeping delivery aligned with security, compliance, \
-      and scalability constraints."
+      description:
+        "Tech lead for enterprise on-prem and sovereign AI delivery, owning solution architecture and platform engineering.",
+      highlights: [
+        "Defined a scalable RAG reference architecture and rollout standards.",
+        "Introduced evaluation and observability for LLM applications, tracking quality, latency, and cost in production.",
+        "Shipped an NLP recommendation system, improving content relevance and user engagement.",
+        "Led client discovery workshops and internal hackathons, driving PoCs/MVPs to validate AI use cases.",
+        "Mentored engineers and guided architecture decisions balancing security, compliance, and scale.",
+      ],
     },
     {
       company: "Fraunhofer IIS",
@@ -104,7 +106,7 @@ export const RESUME_DATA = {
       start: "2019",
       end: "2020",
       description:
-        "Developing and integrating a Deep learning based temporal tagger for Voice Assistants as a part of Master thesis.",
+        "Built and integrated a deep-learning temporal tagger for voice assistants as part of my master's thesis.",
     },
     {
       company: "Accenture",
@@ -115,7 +117,7 @@ export const RESUME_DATA = {
       start: "2018",
       end: "2019",
       description:
-        "Developed a 3D holographic chatbot, increasing user engagement through interactive experiences.",
+        "Built a 3D holographic chatbot that increased user engagement through interactive experiences.",
     },
     {
       company: "Smart Digital GmbH",
@@ -125,8 +127,8 @@ export const RESUME_DATA = {
       logo: NSNLogo,
       start: "2017",
       end: "2018",
-      description: "Implemented a real-time anomaly detection system using time-series data to monitor and alert on\
-      operational discrepancies, enhancing system reliability ",
+      description:
+        "Built a real-time anomaly detection system on time-series data, alerting on operational discrepancies to improve reliability.",
     },
     {
       company: "Panacea Live Limited",
@@ -136,37 +138,52 @@ export const RESUME_DATA = {
       logo: NSNLogo,
       start: "2016",
       end: "2017",
-      description: "Developed the Panacea Web system. Explored potential business use cases for fraud detection technology.      ",
+      description:
+        "Built the Panacea web platform and explored fraud-detection use cases for the business.",
     },
   ],
-  skills: [
-    "Python",
-    "NLP",
-    "ML",
-    "LLM",
-    "RAG",
-    "Fine-tuning",
-    "Multi-agent Systems",
-    "LLM Evaluation",
-    "LangChain",
-    "Haystack",
-    "Langfuse",
-    "Vector DB",
-    "Graph DB",
-    "FastAPI",
-    "SQL",
-    "Cypher",
-    "PyTorch",
-    "Azure",
-    "AWS",
-    "Docker",
-    "Kubernetes",
-    "CI/CD",
-    "MLOps",
+  skillGroups: [
+    {
+      title: "GenAI & NLP",
+      skills: [
+        "LLM",
+        "RAG",
+        "Fine-tuning",
+        "Multi-agent Systems",
+        "LLM Evaluation",
+        "Haystack",
+        "LangChain",
+        "Langfuse",
+      ],
+    },
+    {
+      title: "Engineering & Data",
+      skills: [
+        "Python",
+        "FastAPI",
+        "SQL",
+        "Cypher",
+        "Vector DB",
+        "Graph DB",
+      ],
+    },
+    {
+      title: "ML & Platform",
+      skills: [
+        "PyTorch",
+        "Azure",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "CI/CD",
+        "MLOps",
+      ],
+    },
   ],
   projects: [
     {
       title: "A Voice-based LLM Crew Agent",
+      featured: true,
       techStack: ["Python", "OpenAI", "LangChain", "CrewAI", "Streamlit", "Elevenlabs", "Crawler"],
       description:
         "A text/voice-based multi-agent system with RAG in specialized domain",
@@ -178,6 +195,7 @@ export const RESUME_DATA = {
     },
     {
       title: "LLM Multi-Agent for Search",
+      featured: true,
       techStack: ["Python", "OpenAI", "LangChain", "LangGraph", "Streamlit"],
       description:
         "Simple multi-agent system with external search API to search, analyze, generate content",
@@ -189,6 +207,7 @@ export const RESUME_DATA = {
     },
     {
       title: "Knowledge Graph LLM Agent",
+      featured: true,
       techStack: ["Python", "OpenAI", "Neo4j", "LangChain", "Streamlit"],
       description:
         "A knowledge-graph based LLM agent to perform search with different Cypher query",
@@ -200,6 +219,7 @@ export const RESUME_DATA = {
     },
     {
       title: "Tags generation",
+      featured: true,
       techStack: ["Python", "LLM", "Mistral-7B"],
       description:
         "Simple prototyping of generating tags from forums with Open-source LLM",
@@ -211,6 +231,7 @@ export const RESUME_DATA = {
     },
     {
       title: "DA-Time",
+      featured: true,
       techStack: [
         "Python",
         "BERT",
@@ -225,6 +246,7 @@ export const RESUME_DATA = {
     },
     {
       title: "AI Music Generation",
+      featured: true,
       techStack: [
         "Python",
         "Language Modeling",
@@ -271,7 +293,7 @@ export const RESUME_DATA = {
       },
     },
   ],
-  Publications: [
+  publications: [
     {
       title: "Enhancing Pipeline-Based Conversational Agents with Large Language Models",
       techStack: ["Python", "GPT-4"],

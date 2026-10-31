@@ -1,6 +1,15 @@
 "use client";
 
 import * as React from "react";
+import { useTheme } from "next-themes";
+import {
+  ArrowUpRight,
+  Copy,
+  Mail,
+  Printer,
+  Search,
+  SunMoon,
+} from "lucide-react";
 
 import {
   CommandDialog,
@@ -11,85 +20,149 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { Button } from "./ui/button";
-import { CommandIcon } from "lucide-react";
-import { useTheme } from "next-themes";
+import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 interface Props {
   links: { url: string; title: string }[];
+  email?: string;
 }
 
-export const CommandMenu = ({ links }: Props) => {
+const SECTIONS = [
+  { href: "#about", label: "About" },
+  { href: "#experience", label: "Experience" },
+  { href: "#education", label: "Education" },
+  { href: "#skills", label: "Skills" },
+  { href: "#projects", label: "Projects" },
+  { href: "#publications", label: "Publications" },
+];
+
+export const CommandMenu = ({ links, email }: Props) => {
   const [open, setOpen] = React.useState(false);
-  const { theme, setTheme } = useTheme();
+  const [copied, setCopied] = React.useState(false);
+  const { setTheme } = useTheme();
 
   React.useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "j" && (e.metaKey || e.ctrlKey)) {
+      if (e.key.toLowerCase() === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
         setOpen((open) => !open);
       }
     };
 
+    const openMenu = () => setOpen(true);
+
     document.addEventListener("keydown", down);
-    return () => document.removeEventListener("keydown", down);
+    window.addEventListener("open-command-menu", openMenu);
+    return () => {
+      document.removeEventListener("keydown", down);
+      window.removeEventListener("open-command-menu", openMenu);
+    };
   }, []);
 
+  React.useEffect(() => {
+    if (!open) setCopied(false);
+  }, [open]);
+
+  const scrollTo = (href: string) => {
+    setOpen(false);
+    document
+      .querySelector(href)
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
+
+  const toggleTheme = () => {
+    setOpen(false);
+    const isDark = document.documentElement.classList.contains("dark");
+    setTheme(isDark ? "light" : "dark");
+  };
+
+  const copyEmail = async () => {
+    if (!email) return;
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      window.setTimeout(() => setOpen(false), 600);
+    } catch {
+      setOpen(false);
+    }
+  };
+
   return (
-    <>
-      <p className="fixed bottom-0 left-0 right-0 hidden border-t border-t-muted bg-white p-1 text-center text-sm text-muted-foreground print:hidden xl:block dark:bg-gray-950">
-        Press{" "}
-        <kbd className="pointer-events-none inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground opacity-100">
-          <span className="text-xs">⌘</span>J
-        </kbd>{" "}
-        to open the command menu
-      </p>
-      <Button
-        onClick={() => setOpen((open) => !open)}
-        variant="outline"
-        size="icon"
-        className="fixed bottom-4 right-4 flex rounded-full shadow-2xl print:hidden xl:hidden"
-      >
-        <CommandIcon className="my-6 size-6" />
-      </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
-        <CommandInput placeholder="Type a command or search..." />
-        <CommandList>
-          <CommandEmpty>No results found.</CommandEmpty>
-          <CommandGroup heading="Actions">
+    <CommandDialog open={open} onOpenChange={setOpen}>
+      <DialogTitle className="sr-only">Command menu</DialogTitle>
+      <DialogDescription className="sr-only">
+        Search sections, links, and actions.
+      </DialogDescription>
+      <CommandInput placeholder="Search sections, links, actions…" />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Jump to">
+          {SECTIONS.map((section) => (
             <CommandItem
+              key={section.href}
+              value={`${section.label} ${section.href}`}
+              onSelect={() => scrollTo(section.href)}
+            >
+              <Search className="mr-2 h-4 w-4" />
+              <span>{section.label}</span>
+            </CommandItem>
+          ))}
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Actions">
+          <CommandItem
+            value="print save pdf download cv"
+            onSelect={() => {
+              setOpen(false);
+              window.print();
+            }}
+          >
+            <Printer className="mr-2 h-4 w-4" />
+            <span>Print / Save as PDF</span>
+          </CommandItem>
+          <CommandItem value="toggle theme dark light" onSelect={toggleTheme}>
+            <SunMoon className="mr-2 h-4 w-4" />
+            <span>Toggle theme</span>
+          </CommandItem>
+          {email ? (
+            <CommandItem
+              value={`copy email ${email}`}
+              onSelect={copyEmail}
+            >
+              <Copy className="mr-2 h-4 w-4" />
+              <span>{copied ? "Email copied" : "Copy email address"}</span>
+            </CommandItem>
+          ) : null}
+          {email ? (
+            <CommandItem
+              value="send email contact"
               onSelect={() => {
                 setOpen(false);
-                window.print();
+                window.location.href = `mailto:${email}`;
               }}
             >
-              <span>Print</span>
+              <Mail className="mr-2 h-4 w-4" />
+              <span>Send email</span>
             </CommandItem>
+          ) : null}
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Links">
+          {links.map(({ url, title }) => (
             <CommandItem
-              onSelect={(prev) => {
-                theme === "dark" ? setTheme("light") : setTheme("dark");
+              key={url}
+              value={`${title} ${url}`}
+              onSelect={() => {
                 setOpen(false);
+                window.open(url, "_blank", "noopener,noreferrer");
               }}
             >
-              <span>Toggle Theme</span>
+              <span>{title}</span>
+              <ArrowUpRight className="ml-auto h-4 w-4 text-muted-foreground" />
             </CommandItem>
-          </CommandGroup>
-          <CommandGroup heading="Links">
-            {links.map(({ url, title }) => (
-              <CommandItem
-                key={url}
-                onSelect={() => {
-                  setOpen(false);
-                  window.open(url, "_blank");
-                }}
-              >
-                <span>{title}</span>
-              </CommandItem>
-            ))}
-          </CommandGroup>
-          <CommandSeparator />
-        </CommandList>
-      </CommandDialog>
-    </>
+          ))}
+        </CommandGroup>
+      </CommandList>
+    </CommandDialog>
   );
 };

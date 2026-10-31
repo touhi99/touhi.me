@@ -17,7 +17,19 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)", ...require("tailwindcss/defaultTheme").fontFamily.sans],
+        mono: [
+          "var(--font-jetbrains-mono)",
+          ...require("tailwindcss/defaultTheme").fontFamily.mono,
+        ],
+      },
       colors: {
+        brand: {
+          DEFAULT: "hsl(var(--brand))",
+          foreground: "hsl(var(--brand-foreground))",
+          soft: "hsl(var(--brand-soft))",
+        },
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
