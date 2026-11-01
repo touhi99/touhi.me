@@ -182,6 +182,18 @@ export const RESUME_DATA = {
   ],
   projects: [
     {
+      title: "Rivals Atlas",
+      featured: true,
+      techStack: ["Python", "FastAPI", "Haystack", "Knowledge Graph", "LadybugDB", "React"],
+      description:
+        "Analyse players' own gaming stat matches with a dashboard and a knowledge-graph agent that answers from checkable queries",
+      logo: TouhiMeLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/rivals-atlas",
+      },
+    },
+    {
       title: "A Voice-based LLM Crew Agent",
       featured: true,
       techStack: ["Python", "OpenAI", "LangChain", "CrewAI", "Streamlit", "Elevenlabs", "Crawler"],
