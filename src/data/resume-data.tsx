@@ -258,7 +258,6 @@ export const RESUME_DATA = {
     },
     {
       title: "AI Music Generation",
-      featured: true,
       techStack: [
         "Python",
         "Language Modeling",
