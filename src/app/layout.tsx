@@ -24,11 +24,11 @@ const description =
   "Senior Solution Engineer at deepset working hands-on with enterprise customers as a forward deployed engineer on the Haystack Enterprise Platform — designing, building, and shipping production-grade Generative AI applications.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://touhi.me"),
+  metadataBase: new URL("https://www.touhi.me"),
   title,
   description,
   applicationName: RESUME_DATA.name,
-  authors: [{ name: RESUME_DATA.name, url: "https://touhi.me" }],
+  authors: [{ name: RESUME_DATA.name, url: "https://www.touhi.me" }],
   creator: RESUME_DATA.name,
   keywords: [
     "Touhidul Alam",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "profile",
     locale: "en_US",
-    url: "https://touhi.me",
+    url: "https://www.touhi.me",
     siteName: RESUME_DATA.name,
     title,
     description,
