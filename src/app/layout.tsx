@@ -1,5 +1,5 @@
 import { Analytics } from "@vercel/analytics/react";
-import { Inter, JetBrains_Mono } from "next/font/google";
+import { Hanken_Grotesk, Inter, JetBrains_Mono, Oxanium } from "next/font/google";
 
 import "./globals.css";
 import React from "react";
@@ -17,6 +17,18 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-jetbrains-mono",
+});
+
+const oxanium = Oxanium({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-oxanium",
+});
+
+const hanken = Hanken_Grotesk({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-hanken",
 });
 
 const title = `${RESUME_DATA.name} — ${RESUME_DATA.role}, ${RESUME_DATA.specialties}`;
@@ -86,7 +98,7 @@ export default function RootLayout({
     <html
       lang="en"
       suppressHydrationWarning
-      className={`${inter.variable} ${jetbrainsMono.variable}`}
+      className={`${inter.variable} ${jetbrainsMono.variable} ${oxanium.variable} ${hanken.variable}`}
     >
       <body className="font-sans">
         <ThemeProvider
