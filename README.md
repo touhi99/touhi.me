@@ -1,65 +1,28 @@
-# Minimalist CV [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FBartoszJarocki%2Fcv)
+# touhi.me
 
-Simple web app that renders minimalist CV with print-friendly layout.
+Personal portfolio and CV site, a print-friendly single page built with Next.js, TypeScript, Tailwind CSS and shadcn/ui. Based on [BartoszJarocki/cv](https://github.com/BartoszJarocki/cv) (MIT).
 
-Built with Next.js and shadcn/ui, deployed on Vercel.
+The content is in a single file, [`src/data/resume-data.tsx`](./src/data/resume-data.tsx).
 
-# Features
+## Requirements
 
-- Setup only takes a few minutes [single config file](./src/data/resume-data.tsx)
-- Built using Next.js 14, React, Typescript, Shadcn/ui, TailwindCss
-- Auto generated Layout
-- Responsive for different devices
-- Optimized for Next.js and Vercel
+- Node.js and yarn, or Docker
 
-# Getting Started Locally
+## Run
 
-1. Clone this repository to your local machine:
-
-   ```bash
-   git clone https://github.com/BartoszJarocki/cv.git
-   ```
-
-2. Move to the cloned directory
-
-   ```bash
-   cd cv
-   ```
-
-3. Install dependencies:
-
-   ```bash
-   yarn install
-   ```
-
-4. Start the local Server:
-
-   ```bash
-   yarn dev
-   ```
-
-5. Open the [Config file](./src/data/resume-data.tsx) and make changes
-
-# Run with Docker
-
-Build the container
-
+```bash
+yarn install
+yarn dev
 ```
+
+With Docker:
+
+```bash
 docker compose build
-```
-
-Run the container
-
-```
 docker compose up -d
+docker compose down
 ```
 
-Stop the Container
-
-```
-docker compose down 
-```
-
-# License
+## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
