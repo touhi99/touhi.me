@@ -1,0 +1,22 @@
+#!/bin/bash
+set -euo pipefail
+cd "$(dirname "$0")/.."
+
+step() { printf '== %s\n' "$1"; }
+
+step "prettier"
+./node_modules/.bin/prettier --check .
+
+step "eslint"
+./node_modules/.bin/eslint --max-warnings 0 src
+
+step "typescript"
+./node_modules/.bin/tsc --noEmit
+
+step "shell syntax"
+bash -n scripts/check
+
+step "docs and comments"
+git ls-files -z --cached --others --exclude-standard | xargs -0 python3 -I scripts/slop_check.py
+
+echo "all checks passed"

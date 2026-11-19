@@ -12,7 +12,6 @@ export const size = {
 
 export const contentType = "image/png";
 
-/** Oxanium Bold from Google Fonts, so the card matches the site. Falls back to the default font. */
 async function loadFont(): Promise<ArrayBuffer | null> {
   try {
     const css = await (
@@ -23,7 +22,9 @@ async function loadFont(): Promise<ArrayBuffer | null> {
         },
       })
     ).text();
-    const match = css.match(/src: url\((.+?)\) format\('(opentype|truetype)'\)/);
+    const match = css.match(
+      /src: url\((.+?)\) format\('(opentype|truetype)'\)/,
+    );
     if (!match) return null;
     return await (await fetch(match[1])).arrayBuffer();
   } catch {
@@ -31,7 +32,6 @@ async function loadFont(): Promise<ArrayBuffer | null> {
   }
 }
 
-/** A small version of the career map: time climbs the trunk, regions sit around it. */
 function MiniMap() {
   const glow = (cx: number, cy: number, r: number, c: string) => (
     <g key={`${cx}-${cy}`}>
@@ -44,13 +44,47 @@ function MiniMap() {
   return (
     <svg width="470" height="570" viewBox="0 0 470 570">
       <g fill="none" strokeLinecap="round">
-        <path d="M232 540 C 215 470, 250 430, 238 380 C 228 330, 245 300, 236 250 C 228 200, 240 150, 234 70" stroke="#34d399" strokeWidth={14} opacity={0.12} />
-        <path d="M232 540 C 215 470, 250 430, 238 380 C 228 330, 245 300, 236 250 C 228 200, 240 150, 234 70" stroke="#34d399" strokeWidth={4} />
-        <path d="M238 300 C 330 300, 360 270, 410 250" stroke="#c9a4ff" strokeWidth={2} opacity={0.6} />
-        <path d="M238 300 C 330 330, 360 380, 405 400" stroke="#ff7a50" strokeWidth={2} opacity={0.6} />
-        <path d="M234 150 C 160 150, 120 120, 70 110" stroke="#7fd9ff" strokeWidth={2} opacity={0.6} />
-        <path d="M238 300 C 170 320, 120 360, 70 380" stroke="#7fd9ff" strokeWidth={2} opacity={0.6} />
-        <path d="M232 470 C 160 480, 120 470, 70 470" stroke="#97b4ff" strokeWidth={2} opacity={0.6} />
+        <path
+          d="M232 540 C 215 470, 250 430, 238 380 C 228 330, 245 300, 236 250 C 228 200, 240 150, 234 70"
+          stroke="#34d399"
+          strokeWidth={14}
+          opacity={0.12}
+        />
+        <path
+          d="M232 540 C 215 470, 250 430, 238 380 C 228 330, 245 300, 236 250 C 228 200, 240 150, 234 70"
+          stroke="#34d399"
+          strokeWidth={4}
+        />
+        <path
+          d="M238 300 C 330 300, 360 270, 410 250"
+          stroke="#c9a4ff"
+          strokeWidth={2}
+          opacity={0.6}
+        />
+        <path
+          d="M238 300 C 330 330, 360 380, 405 400"
+          stroke="#ff7a50"
+          strokeWidth={2}
+          opacity={0.6}
+        />
+        <path
+          d="M234 150 C 160 150, 120 120, 70 110"
+          stroke="#7fd9ff"
+          strokeWidth={2}
+          opacity={0.6}
+        />
+        <path
+          d="M238 300 C 170 320, 120 360, 70 380"
+          stroke="#7fd9ff"
+          strokeWidth={2}
+          opacity={0.6}
+        />
+        <path
+          d="M232 470 C 160 480, 120 470, 70 470"
+          stroke="#97b4ff"
+          strokeWidth={2}
+          opacity={0.6}
+        />
       </g>
       {glow(234, 70, 14, "#ffb3c7")}
       {glow(236, 150, 22, "#34d399")}
@@ -75,57 +109,109 @@ export default async function Image() {
   const display = fontData ? "Oxanium" : "sans-serif";
 
   return new ImageResponse(
-    (
+    <div
+      style={{
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        backgroundColor: "#08080c",
+        backgroundImage:
+          "linear-gradient(135deg, #0a0a10 0%, #101a17 60%, #08080c 100%)",
+        color: "#f1e8d4",
+        padding: "64px 72px",
+        fontFamily: "sans-serif",
+      }}
+    >
       <div
         style={{
-          width: "100%",
-          height: "100%",
           display: "flex",
-          backgroundColor: "#08080c",
-          backgroundImage: "linear-gradient(135deg, #0a0a10 0%, #101a17 60%, #08080c 100%)",
-          color: "#f1e8d4",
-          padding: "64px 72px",
-          fontFamily: "sans-serif",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          flex: 1,
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column", justifyContent: "space-between", flex: 1 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={`data:image/jpeg;base64,${photo.toString("base64")}`}
-              width={116}
-              height={116}
-              alt=""
-              style={{ borderRadius: 58, border: "4px solid #34d399", objectFit: "cover" }}
-            />
-            <div style={{ display: "flex", flexDirection: "column" }}>
-              <span style={{ fontFamily: display, fontSize: 30, fontWeight: 700, color: "#34d399" }}>
-                touhi.me
-              </span>
-              <span style={{ fontSize: 24, color: "#a39eb0", marginTop: 4 }}>Munich · CET</span>
-            </div>
-          </div>
-
+        <div style={{ display: "flex", alignItems: "center", gap: 22 }}>
+          <img
+            src={`data:image/jpeg;base64,${photo.toString("base64")}`}
+            width={116}
+            height={116}
+            alt=""
+            style={{
+              borderRadius: 58,
+              border: "4px solid #34d399",
+              objectFit: "cover",
+            }}
+          />
           <div style={{ display: "flex", flexDirection: "column" }}>
-            <span style={{ fontFamily: display, fontSize: 92, fontWeight: 700, letterSpacing: -2, lineHeight: 1.02 }}>
-              Touhidul Alam
+            <span
+              style={{
+                fontFamily: display,
+                fontSize: 30,
+                fontWeight: 700,
+                color: "#34d399",
+              }}
+            >
+              touhi.me
             </span>
-            <span style={{ fontFamily: display, marginTop: 18, fontSize: 36, fontWeight: 700, color: "#34d399" }}>
-              Senior Solution Engineer at deepset
-            </span>
-            <span style={{ marginTop: 22, fontSize: 28, color: "#b9b4c4", lineHeight: 1.4, maxWidth: 620 }}>
-              Production-grade Generative AI for the enterprise. Explore the career map.
+            <span style={{ fontSize: 24, color: "#a39eb0", marginTop: 4 }}>
+              Munich · CET
             </span>
           </div>
         </div>
-        <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 470 }}>
-          <MiniMap />
+
+        <div style={{ display: "flex", flexDirection: "column" }}>
+          <span
+            style={{
+              fontFamily: display,
+              fontSize: 92,
+              fontWeight: 700,
+              letterSpacing: -2,
+              lineHeight: 1.02,
+            }}
+          >
+            Touhidul Alam
+          </span>
+          <span
+            style={{
+              fontFamily: display,
+              marginTop: 18,
+              fontSize: 36,
+              fontWeight: 700,
+              color: "#34d399",
+            }}
+          >
+            Senior Solution Engineer at deepset
+          </span>
+          <span
+            style={{
+              marginTop: 22,
+              fontSize: 28,
+              color: "#b9b4c4",
+              lineHeight: 1.4,
+              maxWidth: 620,
+            }}
+          >
+            Production-grade Generative AI for the enterprise. Explore the
+            career map.
+          </span>
         </div>
       </div>
-    ),
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          width: 470,
+        }}
+      >
+        <MiniMap />
+      </div>
+    </div>,
     {
       ...size,
-      fonts: fontData ? [{ name: "Oxanium", data: fontData, weight: 700, style: "normal" }] : undefined,
+      fonts: fontData
+        ? [{ name: "Oxanium", data: fontData, weight: 700, style: "normal" }]
+        : undefined,
     },
   );
 }

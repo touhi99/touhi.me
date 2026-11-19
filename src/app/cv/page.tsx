@@ -94,8 +94,7 @@ export default function Page() {
         id="top"
         className="mx-auto w-full max-w-4xl scroll-mt-20 px-4 sm:px-6"
       >
-        {/* Hero */}
-        <section className="flex animate-fade-up scroll-mt-20 flex-col-reverse gap-8 pb-12 pt-10 sm:flex-row sm:items-start sm:justify-between sm:pt-16">
+        <section className="animate-fade-up flex scroll-mt-20 flex-col-reverse gap-8 pb-12 pt-10 sm:flex-row sm:items-start sm:justify-between sm:pt-16">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1 text-xs font-medium text-muted-foreground">
               <span className="relative flex h-2 w-2">
@@ -108,9 +107,7 @@ export default function Page() {
             <h1 className="mt-4 text-4xl font-semibold tracking-tighter text-foreground sm:text-5xl">
               {RESUME_DATA.name}
             </h1>
-            <p className="mt-3 text-lg text-muted-foreground">
-              {specialties}
-            </p>
+            <p className="mt-3 text-lg text-muted-foreground">{specialties}</p>
             <p className="mt-4 max-w-xl text-pretty leading-relaxed text-muted-foreground">
               I help enterprise teams design, build, and ship production-grade
               Generative AI applications on the Haystack Enterprise Platform.
@@ -174,7 +171,6 @@ export default function Page() {
         </section>
 
         <div id="content" className="space-y-12 pb-16 sm:space-y-14">
-          {/* About */}
           <Section id="about" className="animate-fade-up-delayed">
             <SectionHeading index="01" title="About" />
             <p className="max-w-3xl text-pretty text-[15px] leading-7 text-muted-foreground">
@@ -182,7 +178,6 @@ export default function Page() {
             </p>
           </Section>
 
-          {/* Experience */}
           <Section id="experience">
             <SectionHeading
               index="02"
@@ -276,7 +271,6 @@ export default function Page() {
             </div>
           </Section>
 
-          {/* Education */}
           <Section id="education">
             <SectionHeading index="03" title="Education" />
             <div className="grid gap-3 sm:grid-cols-2">
@@ -286,7 +280,7 @@ export default function Page() {
                   className="break-inside-avoid rounded-xl border border-border bg-card p-4 transition-colors hover:border-brand/30"
                 >
                   <div className="flex items-start justify-between gap-3">
-                    <h3 className="font-semibold text-sm">
+                    <h3 className="text-sm font-semibold">
                       {education.school}
                     </h3>
                     <GraduationCap
@@ -305,7 +299,6 @@ export default function Page() {
             </div>
           </Section>
 
-          {/* Skills */}
           <Section id="skills">
             <SectionHeading index="04" title="Skills" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -344,7 +337,6 @@ export default function Page() {
             </div>
           </Section>
 
-          {/* Projects */}
           <Section id="projects">
             <SectionHeading index="05" title="Projects" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -360,7 +352,12 @@ export default function Page() {
               ))}
             </div>
             <div className="no-print flex justify-center pt-1">
-              <Button asChild variant="outline" size="sm" className="rounded-full">
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="rounded-full"
+              >
                 <a
                   href="https://github.com/touhi99"
                   target="_blank"
@@ -373,7 +370,6 @@ export default function Page() {
             </div>
           </Section>
 
-          {/* Publications */}
           <Section id="publications" className="print-break">
             <SectionHeading index="06" title="Publications" />
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
@@ -383,7 +379,9 @@ export default function Page() {
                   title={publication.title}
                   description={publication.description}
                   tags={publication.techStack}
-                  link={"link" in publication ? publication.link.href : undefined}
+                  link={
+                    "link" in publication ? publication.link.href : undefined
+                  }
                   linkLabel={
                     "link" in publication
                       ? publication.link.label === "aclweb"
@@ -402,8 +400,7 @@ export default function Page() {
       <footer className="no-print border-t border-border">
         <div className="mx-auto flex w-full max-w-4xl flex-col items-start justify-between gap-4 px-4 py-8 sm:flex-row sm:items-center sm:px-6">
           <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} {RESUME_DATA.name}. Built with
-            Next.js.
+            © {new Date().getFullYear()} {RESUME_DATA.name}. Built with Next.js.
           </p>
           <div className="flex items-center gap-4 text-sm text-muted-foreground">
             <EmailReveal

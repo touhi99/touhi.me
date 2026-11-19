@@ -3,20 +3,12 @@ import type { RESUME_DATA } from "@/data/resume-data";
 type Resume = typeof RESUME_DATA;
 
 export type NodeType =
-  | "role"
-  | "edu"
-  | "project"
-  | "paper"
-  | "skill"
-  | "group"
-  | "hl"
-  | "contact";
+  "role" | "edu" | "project" | "paper" | "skill" | "group" | "hl" | "contact";
 
 export interface GNode {
   id: string;
   type: NodeType;
   title: string;
-  /** Shorter label drawn on the map. */
   short?: string;
   sub: string;
   x: number;
@@ -27,16 +19,11 @@ export interface GNode {
   tags?: string[];
   links?: [string, string][];
   text?: string[];
-  /** Year span, used for the duration rails. */
   a?: number;
   b?: number;
-  /** Accent colour override. */
   col?: string;
-  /** Label in the detail panel. */
   kind?: string;
-  /** Hub this node belongs to; hidden until the hub is open. */
   parent?: string;
-  /** Node whose children are listed as highlights. */
   hls?: boolean;
 }
 
@@ -51,7 +38,6 @@ export interface GEdge {
 export interface Graph {
   nodes: GNode[];
   edges: GEdge[];
-  /** Experience path, newest first. */
   path: string[];
 }
 
@@ -69,12 +55,11 @@ export const TYPE_META: Record<NodeType, { name: string; color: string }> = {
 export const skillId = (name: string) =>
   "sk:" + name.toLowerCase().replace(/[^a-z0-9]+/g, "");
 
-/** Time runs upward: 2011 at y = 0, later years higher. */
 const Y = (year: number) => -(year - 2011) * 150;
 
-const host = (url: string) => url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+const host = (url: string) =>
+  url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
 
-/** Authored layout and short copy. Content comes from RESUME_DATA by index. */
 const ROLES = [
   { id: "deepset", x: 0, y: Y(2026.45), r: 22 },
   { id: "arch", x: 24, y: Y(2023), r: 28, hls: true },
@@ -85,8 +70,20 @@ const ROLES = [
 ];
 
 const EDU = [
-  { id: "msc", title: "MSc Computational Linguistics", x: -380, y: Y(2018.5), r: 19 },
-  { id: "bsc", title: "BSc Computer Science and Engineering", x: -380, y: Y(2013), r: 17 },
+  {
+    id: "msc",
+    title: "MSc Computational Linguistics",
+    x: -380,
+    y: Y(2018.5),
+    r: 19,
+  },
+  {
+    id: "bsc",
+    title: "BSc Computer Science and Engineering",
+    x: -380,
+    y: Y(2013),
+    r: 17,
+  },
 ];
 
 const HIGHLIGHTS: { title: string; dx: number; dy: number }[] = [
@@ -98,22 +95,55 @@ const HIGHLIGHTS: { title: string; dx: number; dy: number }[] = [
 ];
 
 const PROJECTS = [
-  { id: "atlas", sub: "Dashboard and knowledge-graph agent", x: 780, y: -2240, big: true },
+  {
+    id: "atlas",
+    sub: "Dashboard and knowledge-graph agent",
+    x: 780,
+    y: -2240,
+    big: true,
+  },
   { id: "crew", sub: "Multi-agent with RAG", x: 1020, y: -2070, big: true },
-  { id: "search", sub: "Search, analyse, generate", x: 790, y: -1960, big: true },
+  {
+    id: "search",
+    sub: "Search, analyse, generate",
+    x: 790,
+    y: -1960,
+    big: true,
+  },
   { id: "kg", sub: "Cypher search over a graph", x: 1040, y: -1840, big: true },
-  { id: "tags", sub: "Tags with an open-source LLM", x: 770, y: -1580, big: true },
-  { id: "datime", sub: "Temporal expression recognizer", x: 700, y: -1390, big: true },
+  {
+    id: "tags",
+    sub: "Tags with an open-source LLM",
+    x: 770,
+    y: -1580,
+    big: true,
+  },
+  {
+    id: "datime",
+    sub: "Temporal expression recognizer",
+    x: 700,
+    y: -1390,
+    big: true,
+  },
   { id: "music", sub: "Language modeling on MIDI", x: 1010, y: -1570 },
   { id: "dialog", sub: "Ensemble model, speech and text", x: 910, y: -1440 },
   { id: "emotion", sub: "Twitter text and image", x: 1050, y: -1320 },
   { id: "ngram", sub: "N-gram model from scratch", x: 860, y: -1220 },
 ];
 
-/** Publications are listed newest first in RESUME_DATA. */
 const PAPERS = [
-  { id: "arxiv", short: "LLMs in conversational agents", venue: "arXiv 2023", year: 2023.4 },
-  { id: "iwcs", short: "New Domain, Major Effort?", venue: "IWCS 2021", year: 2021.3 },
+  {
+    id: "arxiv",
+    short: "LLMs in conversational agents",
+    venue: "arXiv 2023",
+    year: 2023.4,
+  },
+  {
+    id: "iwcs",
+    short: "New Domain, Major Effort?",
+    venue: "IWCS 2021",
+    year: 2021.3,
+  },
   { id: "pate", short: "PÂTÉ", venue: "LREC 2020", year: 2020.2 },
 ];
 
@@ -123,7 +153,6 @@ const GROUPS = [
   { id: "ml", x: -650, y: -1480 },
 ];
 
-/** Skills each project or highlight draws on. Matches the tech stacks plus the descriptions. */
 const PROJECT_SKILLS: Record<string, string[]> = {
   atlas: ["Python", "FastAPI", "Haystack", "Graph DB"],
   crew: ["Python", "LangChain", "Multi-agent Systems", "RAG", "LLM"],
@@ -316,8 +345,15 @@ export function buildGraph(data: Resume): Graph {
     body: "Repositories on GitHub: agents, knowledge graphs, NLP and language modeling.",
   });
 
-  /* Edges */
-  const trunk = ["panacea", "smart", "intern", "fraun", "arch", "deepset", "contact"];
+  const trunk = [
+    "panacea",
+    "smart",
+    "intern",
+    "fraun",
+    "arch",
+    "deepset",
+    "contact",
+  ];
   for (let i = 0; i < trunk.length - 1; i++) link(trunk[i], trunk[i + 1], "t");
   link("bsc", "msc");
   link("bsc", "panacea");

@@ -133,7 +133,6 @@
   }
 }
 
-/* Print / Save as PDF */
 .print-force-new-page {
   page-break-before: always;
 }

@@ -1,5 +1,10 @@
 import { Analytics } from "@vercel/analytics/react";
-import { Hanken_Grotesk, Inter, JetBrains_Mono, Oxanium } from "next/font/google";
+import {
+  Hanken_Grotesk,
+  Inter,
+  JetBrains_Mono,
+  Oxanium,
+} from "next/font/google";
 
 import "./globals.css";
 import React from "react";

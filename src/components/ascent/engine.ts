@@ -53,7 +53,8 @@ const rnd = (i: number) => {
   const x = Math.sin(i * 127.1 + 311.7) * 43758.5453;
   return x - Math.floor(x);
 };
-const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2);
+const ease = (t: number) =>
+  t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
 export function initAscent(o: {
   root: HTMLElement;
@@ -79,9 +80,9 @@ export function initAscent(o: {
 
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const monoFamily =
-    getComputedStyle(root).getPropertyValue("--asc-mono").trim() || "ui-monospace, monospace";
+    getComputedStyle(root).getPropertyValue("--asc-mono").trim() ||
+    "ui-monospace, monospace";
 
-  /* ---------- graph ---------- */
   const by: Record<string, RNode> = {};
   const nodes: RNode[] = graph.nodes.map((n) => {
     const r: RNode = {
@@ -108,7 +109,6 @@ export function initAscent(o: {
   const kids = (n: RNode) => nodes.filter((m) => m.parent === n.id);
   const totalCount = nodes.filter((n) => n.type !== "contact").length;
 
-  /* ---------- state ---------- */
   let W = 0;
   let H = 0;
   let DPR = 1;
@@ -138,16 +138,15 @@ export function initAscent(o: {
 
   try {
     const saved = JSON.parse(localStorage.getItem(STORE_KEY) || "[]");
-    if (Array.isArray(saved)) saved.forEach((id) => by[id] && (visited[id] = 1));
-  } catch {
-    /* storage unavailable */
-  }
+    if (Array.isArray(saved))
+      saved.forEach((id) => by[id] && (visited[id] = 1));
+  } catch {}
   let introSeen = false;
   try {
-    introSeen = sessionStorage.getItem("touhi.intro") === "1" && location.hash !== "#intro";
-  } catch {
-    /* ignore */
-  }
+    introSeen =
+      sessionStorage.getItem("touhi.intro") === "1" &&
+      location.hash !== "#intro";
+  } catch {}
   done = PATH.every((id) => visited[id]);
 
   const phone = () => W < 700;
@@ -168,7 +167,6 @@ export function initAscent(o: {
     r: 0.6 + rnd(i + 1600) * 1.6,
   }));
 
-  /* ---------- camera ---------- */
   const S = (wx: number, wy: number): [number, number] => [
     (wx - cam.x) * cam.k + W / 2,
     (wy - cam.y) * cam.k + H / 2,
@@ -187,7 +185,11 @@ export function initAscent(o: {
       W / (BOUNDS.x1 - BOUNDS.x0 + 150),
       H / (BOUNDS.y1 - BOUNDS.y0 + 150),
     );
-    return { x: (BOUNDS.x0 + BOUNDS.x1) / 2, y: (BOUNDS.y0 + BOUNDS.y1) / 2, k };
+    return {
+      x: (BOUNDS.x0 + BOUNDS.x1) / 2,
+      y: (BOUNDS.y0 + BOUNDS.y1) / 2,
+      k,
+    };
   }
   function panelShift() {
     if (!panelOn()) return { x: 0, y: 0 };
@@ -220,15 +222,22 @@ export function initAscent(o: {
     });
     const aw = phone() ? W : W - 420;
     const ah = phone() ? H * 0.45 : H;
-    let k = Math.max(phone() ? 0.17 : 0.3, Math.min(0.85, Math.min(aw / (x1 - x0 + 360), ah / (y1 - y0 + 360))));
+    let k = Math.max(
+      phone() ? 0.17 : 0.3,
+      Math.min(0.85, Math.min(aw / (x1 - x0 + 360), ah / (y1 - y0 + 360))),
+    );
     if (phone()) k = Math.min(k, 0.45);
     return { x: (x0 + x1) / 2, y: (y0 + y1) / 2, k };
   }
 
-  /* ---------- visibility ---------- */
   const lit = (n: RNode) =>
     intro.on ? Math.max(0, Math.min(1, (n.y - front) / 160)) : 1;
-  const ZOOM_REVEAL: Record<string, number> = { skill: 1.15, project: 0.95, paper: 0.9, hl: 0.95 };
+  const ZOOM_REVEAL: Record<string, number> = {
+    skill: 1.15,
+    project: 0.95,
+    paper: 0.9,
+    hl: 0.95,
+  };
   function wantVis(n: RNode) {
     if (!n.parent) return true;
     if (open[n.parent]) return true;
@@ -254,14 +263,17 @@ export function initAscent(o: {
       }
     }
   }
-  const nextWaypoint = () => PATH.map((id) => by[id]).find((n) => !visited[n.id]) || null;
+  const nextWaypoint = () =>
+    PATH.map((id) => by[id]).find((n) => !visited[n.id]) || null;
 
-  /* ---------- state out ---------- */
   function emit() {
     poke();
     const i = sel ? PATH.indexOf(sel.id) : -1;
-    const nx = i < 0 ? nextWaypoint() || by[PATH[0]] : by[PATH[i + 1]] || by.contact;
-    const explored = Object.keys(visited).filter((id) => by[id] && by[id].type !== "contact").length;
+    const nx =
+      i < 0 ? nextWaypoint() || by[PATH[0]] : by[PATH[i + 1]] || by.contact;
+    const explored = Object.keys(visited).filter(
+      (id) => by[id] && by[id].type !== "contact",
+    ).length;
     onState({
       sel: sel ? sel.id : null,
       pathIdx: i,
@@ -276,12 +288,9 @@ export function initAscent(o: {
   function persist() {
     try {
       localStorage.setItem(STORE_KEY, JSON.stringify(Object.keys(visited)));
-    } catch {
-      /* ignore */
-    }
+    } catch {}
   }
 
-  /* ---------- drawing ---------- */
   const sprites: Record<string, HTMLCanvasElement> = {};
   function glow(color: string) {
     let c = sprites[color];
@@ -322,8 +331,14 @@ export function initAscent(o: {
   function bpt(p: number[], t: number): [number, number] {
     const u = 1 - t;
     return [
-      u * u * u * p[0] + 3 * u * u * t * p[2] + 3 * u * t * t * p[4] + t * t * t * p[6],
-      u * u * u * p[1] + 3 * u * u * t * p[3] + 3 * u * t * t * p[5] + t * t * t * p[7],
+      u * u * u * p[0] +
+        3 * u * u * t * p[2] +
+        3 * u * t * t * p[4] +
+        t * t * t * p[6],
+      u * u * u * p[1] +
+        3 * u * u * t * p[3] +
+        3 * u * t * t * p[5] +
+        t * t * t * p[7],
     ];
   }
   const isActive = (n: RNode) => n === hover || n === sel;
@@ -331,13 +346,16 @@ export function initAscent(o: {
   function draw(dt: number) {
     ctx.clearRect(0, 0, W, H);
     for (const s of stars) {
-      const x = ((((s.x - cam.x * cam.k * s.z * 0.4) % 2000) + 2000) % 2000) * (W / 1400);
-      const y = ((((s.y - cam.y * cam.k * s.z * 0.4) % 1400) + 1400) % 1400) * (H / 900);
+      const x =
+        ((((s.x - cam.x * cam.k * s.z * 0.4) % 2000) + 2000) % 2000) *
+        (W / 1400);
+      const y =
+        ((((s.y - cam.y * cam.k * s.z * 0.4) % 1400) + 1400) % 1400) *
+        (H / 900);
       if (x > W || y > H) continue;
       ctx.fillStyle = `rgba(241,232,212,${(0.18 + 0.22 * Math.sin(T * 0.8 + s.p)) * s.z * 1.6})`;
       ctx.fillRect(x, y, s.r, s.r);
     }
-    /* year ruler */
     const a0 = S(-96, Y(2011));
     const a1 = S(-96, Y(2027));
     ctx.strokeStyle = "rgba(241,232,212,.08)";
@@ -358,7 +376,6 @@ export function initAscent(o: {
     }
     ctx.globalCompositeOperation = "lighter";
     ctx.lineCap = "round";
-    /* duration rails */
     for (const n of nodes) {
       if (n.a == null || n.b == null) continue;
       const L = lit(n) * n.f;
@@ -373,20 +390,31 @@ export function initAscent(o: {
       ctx.lineTo(q[0], q[1]);
       ctx.stroke();
     }
-    /* edges */
     for (const e of edges) {
       const L = Math.min(lit(e.a) * e.a.v, lit(e.b) * e.b.v);
       if (L <= 0.01) continue;
       const hot =
-        isActive(e.a) || isActive(e.b) || (!!sel && e.kind !== "t" && (e.a === sel || e.b === sel));
-      const base = e.kind === "t" ? 0.5 : e.kind === "s" ? 0.32 : e.kind === "k" ? 0 : e.kind === "h" ? 0.13 : 0.2;
+        isActive(e.a) ||
+        isActive(e.b) ||
+        (!!sel && e.kind !== "t" && (e.a === sel || e.b === sel));
+      const base =
+        e.kind === "t"
+          ? 0.5
+          : e.kind === "s"
+            ? 0.32
+            : e.kind === "k"
+              ? 0
+              : e.kind === "h"
+                ? 0.13
+                : 0.2;
       const fd = hot ? 1 : Math.min(e.a.f, e.b.f);
       const al = (hot ? 0.95 : base * fd) * L;
       if (al < 0.01) continue;
       const p = bez(e.a, e.b);
       const col = e.kind === "t" ? "#34d399" : hot ? "#f1e8d4" : "#c9c2d6";
       ctx.strokeStyle = rgba(col, al * 0.35);
-      ctx.lineWidth = (e.kind === "t" ? 9 : hot ? 6 : 3) * Math.min(1, cam.k + 0.3);
+      ctx.lineWidth =
+        (e.kind === "t" ? 9 : hot ? 6 : 3) * Math.min(1, cam.k + 0.3);
       ctx.beginPath();
       ctx.moveTo(p[0], p[1]);
       ctx.bezierCurveTo(p[2], p[3], p[4], p[5], p[6], p[7]);
@@ -395,7 +423,9 @@ export function initAscent(o: {
       ctx.lineWidth = e.kind === "t" ? 2.2 : hot ? 1.8 : 1;
       ctx.stroke();
       if ((hot || e.kind === "t") && !RM && L > 0.9) {
-        const k = (T * (hot ? 0.5 : 0.18) + (((e.a.x + e.b.y) % 7) + 7) % 7 * 0.13) % 1;
+        const k =
+          (T * (hot ? 0.5 : 0.18) + ((((e.a.x + e.b.y) % 7) + 7) % 7) * 0.13) %
+          1;
         const pt = bpt(p, k);
         ctx.fillStyle = rgba(hot ? "#ffffff" : "#34d399", hot ? 0.95 : 0.7);
         ctx.beginPath();
@@ -403,7 +433,6 @@ export function initAscent(o: {
         ctx.fill();
       }
     }
-    /* nodes */
     const wp = nextWaypoint();
     const order = nodes.slice().sort((a, b) => a.r - b.r);
     for (const n of order) {
@@ -420,11 +449,27 @@ export function initAscent(o: {
       ctx.drawImage(glow(n.c), p[0] - gr, p[1] - gr, gr * 2, gr * 2);
       ctx.globalAlpha = 1;
       const sides =
-        n.type === "edu" ? 6 : n.type === "project" ? 4 : n.type === "paper" ? 3 : n.type === "group" ? 8 : n.type === "contact" ? 5 : 0;
+        n.type === "edu"
+          ? 6
+          : n.type === "project"
+            ? 4
+            : n.type === "paper"
+              ? 3
+              : n.type === "group"
+                ? 8
+                : n.type === "contact"
+                  ? 5
+                  : 0;
       ctx.strokeStyle = rgba(n.c, L);
       ctx.lineWidth = h ? 2.4 : 1.6;
       if (sides) {
-        poly(p[0], p[1], r, sides, n.type === "project" ? Math.PI / 4 : -Math.PI / 2);
+        poly(
+          p[0],
+          p[1],
+          r,
+          sides,
+          n.type === "project" ? Math.PI / 4 : -Math.PI / 2,
+        );
       } else {
         ctx.beginPath();
         ctx.arc(p[0], p[1], r, 0, TAU);
@@ -439,7 +484,10 @@ export function initAscent(o: {
         ctx.arc(p[0], p[1], r * (1.35 + pulse * 0.12), 0, TAU);
         ctx.stroke();
       }
-      ctx.fillStyle = rgba("#fff7e2", (0.55 + (v ? 0.35 : 0) + (h ? 0.1 : 0)) * L);
+      ctx.fillStyle = rgba(
+        "#fff7e2",
+        (0.55 + (v ? 0.35 : 0) + (h ? 0.1 : 0)) * L,
+      );
       ctx.beginPath();
       ctx.arc(p[0], p[1], Math.max(1.6, r * 0.34), 0, TAU);
       ctx.fill();
@@ -453,7 +501,10 @@ export function initAscent(o: {
         ctx.stroke();
         ctx.setLineDash([]);
       }
-      const ring = (n === wp || (done && n.id === "contact" && n !== sel)) && !intro.on && n !== sel;
+      const ring =
+        (n === wp || (done && n.id === "contact" && n !== sel)) &&
+        !intro.on &&
+        n !== sel;
       if (ring) {
         const ph = RM ? 0.5 : (T * 0.9) % 1;
         ctx.strokeStyle = `rgba(255,247,226,${0.85 * (1 - ph)})`;
@@ -477,7 +528,6 @@ export function initAscent(o: {
     }
   }
 
-  /* ---------- labels ---------- */
   const labs: Record<string, HTMLButtonElement> = {};
   const subs: Record<string, HTMLElement | null> = {};
   for (const n of nodes) {
@@ -525,13 +575,31 @@ export function initAscent(o: {
     return d;
   });
   const minK = (n: RNode) =>
-    n.type === "skill" ? 0.5 : n.type === "hl" ? 0.35 : n.type === "project" ? 0.35 : n.type === "paper" ? 0.3 : 0.2;
+    n.type === "skill"
+      ? 0.5
+      : n.type === "hl"
+        ? 0.35
+        : n.type === "project"
+          ? 0.35
+          : n.type === "paper"
+            ? 0.3
+            : 0.2;
   const weight = (n: RNode) =>
     (isActive(n) ? 100 : 0) +
-    (n.type === "role" || n.type === "edu" || n.type === "group" || n.type === "contact" ? 10 : n.type === "paper" || n.type === "project" ? 6 : n.type === "hl" ? 4 : 1) +
+    (n.type === "role" ||
+    n.type === "edu" ||
+    n.type === "group" ||
+    n.type === "contact"
+      ? 10
+      : n.type === "paper" || n.type === "project"
+        ? 6
+        : n.type === "hl"
+          ? 4
+          : 1) +
     n.r / 100;
 
-  const cache: Record<string, { o: string; t: string; s: string; h: boolean }> = {};
+  const cache: Record<string, { o: string; t: string; s: string; h: boolean }> =
+    {};
   const regCache = REGIONS.map(() => ({ fs: 0, o: "", t: "" }));
   function updLabels() {
     type Cand = { n: RNode; p: [number, number]; r: number; show: boolean };
@@ -541,28 +609,46 @@ export function initAscent(o: {
       const r = Math.max(3.5, n.r * cam.k);
       const L = lit(n) * n.v;
       const related = !!sel && sel.type === "skill" && sel.adj.includes(n);
-      const on = L > 0.7 && (cam.k >= minK(n) || related) && p[0] > -120 && p[0] < W + 120 && p[1] > -60 && p[1] < H + 60;
+      const on =
+        L > 0.7 &&
+        (cam.k >= minK(n) || related) &&
+        p[0] > -120 &&
+        p[0] < W + 120 &&
+        p[1] > -60 &&
+        p[1] < H + 60;
       cands.push({ n, p, r, show: on || (isActive(n) && L > 0.5) });
     }
-    /* keep the more important label when two overlap */
     const placed: { x0: number; y0: number; x1: number; y1: number }[] = [];
     const ok = new Set<string>();
     cands
       .filter((c) => c.show)
       .sort((a, b) => weight(b.n) - weight(a.n))
       .forEach((c) => {
-        const big = c.n.type === "role" || c.n.type === "edu" || c.n.type === "group" || c.n.type === "contact";
+        const big =
+          c.n.type === "role" ||
+          c.n.type === "edu" ||
+          c.n.type === "group" ||
+          c.n.type === "contact";
         const subOn = isActive(c.n) || (big && cam.k > 0.45) || cam.k > 0.9;
         const fs = c.n.type === "skill" ? 11 : 13;
         const w = Math.min(190, c.n.label.length * fs * 0.62) + 8;
-        const lines = Math.max(1, Math.ceil((c.n.label.length * fs * 0.62) / 190));
-        const h = lines * (fs + 3) + (subOn && c.n.sub && c.n.type !== "skill" ? 15 : 0);
+        const lines = Math.max(
+          1,
+          Math.ceil((c.n.label.length * fs * 0.62) / 190),
+        );
+        const h =
+          lines * (fs + 3) +
+          (subOn && c.n.sub && c.n.type !== "skill" ? 15 : 0);
         const x0 = c.p[0] - w / 2;
         const y0 = c.p[1] + c.r * 1.5 + 7;
         const box = { x0, y0, x1: x0 + w, y1: y0 + h };
-        const clash = placed.some((q) => box.x0 < q.x1 && box.x1 > q.x0 && box.y0 < q.y1 && box.y1 > q.y0);
-        /* on phones, skip labels that would be cut off or sit under the pill or dock */
-        const blocked = phone() && (box.x0 < 4 || box.x1 > W - 4 || box.y0 < 70 || box.y1 > H - 92);
+        const clash = placed.some(
+          (q) =>
+            box.x0 < q.x1 && box.x1 > q.x0 && box.y0 < q.y1 && box.y1 > q.y0,
+        );
+        const blocked =
+          phone() &&
+          (box.x0 < 4 || box.x1 > W - 4 || box.y0 < 70 || box.y1 > H - 92);
         if ((!clash && !blocked) || isActive(c.n)) {
           placed.push(box);
           ok.add(c.n.id);
@@ -573,8 +659,11 @@ export function initAscent(o: {
       const n = c.n;
       const L = lit(n) * n.v;
       const shown = ok.has(n.id);
-      const c0 = cache[n.id] || (cache[n.id] = { o: "", t: "", s: "", h: false });
-      const op = shown ? (Math.min(1, n.f * 1.2) * Math.min(1, L * 1.3)).toFixed(2) : "0";
+      const c0 =
+        cache[n.id] || (cache[n.id] = { o: "", t: "", s: "", h: false });
+      const op = shown
+        ? (Math.min(1, n.f * 1.2) * Math.min(1, L * 1.3)).toFixed(2)
+        : "0";
       if (op !== c0.o) {
         b.style.opacity = op;
         const vis = op !== "0";
@@ -587,7 +676,11 @@ export function initAscent(o: {
         b.classList.toggle("hot", hot);
         c0.h = hot;
       }
-      const big = n.type === "role" || n.type === "edu" || n.type === "group" || n.type === "contact";
+      const big =
+        n.type === "role" ||
+        n.type === "edu" ||
+        n.type === "group" ||
+        n.type === "contact";
       const sm = subs[n.id];
       const sd = hot || (big && cam.k > 0.45) || cam.k > 0.9 ? "block" : "none";
       if (sm && sd !== c0.s) {
@@ -624,17 +717,22 @@ export function initAscent(o: {
     });
   }
 
-  /* ---------- minimap ---------- */
   let miniMap = { ox: 0, oy: 0, s: 1 };
   function drawMini() {
     const w = mini.width;
     const h = mini.height;
-    const s = Math.min(w / (BOUNDS.x1 - BOUNDS.x0), h / (BOUNDS.y1 - BOUNDS.y0));
+    const s = Math.min(
+      w / (BOUNDS.x1 - BOUNDS.x0),
+      h / (BOUNDS.y1 - BOUNDS.y0),
+    );
     const ox = (w - s * (BOUNDS.x1 - BOUNDS.x0)) / 2;
     const oy = (h - s * (BOUNDS.y1 - BOUNDS.y0)) / 2;
     miniMap = { ox, oy, s };
     mc.clearRect(0, 0, w, h);
-    const P = (x: number, y: number) => [ox + (x - BOUNDS.x0) * s, oy + (y - BOUNDS.y0) * s];
+    const P = (x: number, y: number) => [
+      ox + (x - BOUNDS.x0) * s,
+      oy + (y - BOUNDS.y0) * s,
+    ];
     mc.strokeStyle = "rgba(241,232,212,.18)";
     mc.lineWidth = 1;
     for (const e of edges) {
@@ -663,7 +761,6 @@ export function initAscent(o: {
     mc.strokeRect(pa[0], pa[1], pb[0] - pa[0], pb[1] - pa[1]);
   }
 
-  /* ---------- selection ---------- */
   function select(id: string) {
     const n = by[id];
     if (!n) return;
@@ -680,7 +777,6 @@ export function initAscent(o: {
       const f = frameSet([n, ...kk]);
       flyTo(f.x, f.y, f.k);
     } else if (n.type === "skill") {
-      /* a skill lights up everything that uses it */
       const used = n.adj.filter((m) => m.type !== "group");
       if (used.length) {
         const f = frameSet([n, ...used]);
@@ -700,9 +796,7 @@ export function initAscent(o: {
     if (done && !wasDone) root.dataset.done = "1";
     try {
       history.replaceState(null, "", `#node=${encodeURIComponent(id)}`);
-    } catch {
-      /* ignore */
-    }
+    } catch {}
     emit();
   }
   function close() {
@@ -713,15 +807,14 @@ export function initAscent(o: {
     Object.assign(tgt, r);
     try {
       history.replaceState(null, "", location.pathname + location.search);
-    } catch {
-      /* ignore */
-    }
+    } catch {}
     emit();
   }
   function step(dir: number) {
     const i = sel ? PATH.indexOf(sel.id) : -1;
     let t: RNode | undefined;
-    if (i < 0) t = dir > 0 ? nextWaypoint() || by[PATH[0]] : by[PATH[PATH.length - 1]];
+    if (i < 0)
+      t = dir > 0 ? nextWaypoint() || by[PATH[0]] : by[PATH[PATH.length - 1]];
     else t = by[PATH[i + dir]] || (dir > 0 ? by.contact : undefined);
     if (t) select(t.id);
   }
@@ -738,14 +831,11 @@ export function initAscent(o: {
     intro.on = false;
     try {
       sessionStorage.setItem("touhi.intro", "1");
-    } catch {
-      /* ignore */
-    }
+    } catch {}
     if (!keepTarget) Object.assign(tgt, restView());
     emit();
   }
 
-  /* ---------- input ---------- */
   function hit(sx: number, sy: number) {
     let best: RNode | null = null;
     let bd = 1e9;
@@ -785,7 +875,12 @@ export function initAscent(o: {
       if (pinch && ptrs.size > 1) {
         const ps = Array.from(ptrs.values());
         const d = Math.hypot(ps[0].x - ps[1].x, ps[0].y - ps[1].y);
-        zoomAt((ps[0].x + ps[1].x) / 2 - r.left, (ps[0].y + ps[1].y) / 2 - r.top, (pinch.k * d) / pinch.d, true);
+        zoomAt(
+          (ps[0].x + ps[1].x) / 2 - r.left,
+          (ps[0].y + ps[1].y) / 2 - r.top,
+          (pinch.k * d) / pinch.d,
+          true,
+        );
       } else if (drag) {
         const dx = e.clientX - drag.x;
         const dy = e.clientY - drag.y;
@@ -838,7 +933,11 @@ export function initAscent(o: {
       poke();
       endIntro();
       const r = cv.getBoundingClientRect();
-      zoomAt(e.clientX - r.left, e.clientY - r.top, tgt.k * Math.exp(-e.deltaY * 0.0016));
+      zoomAt(
+        e.clientX - r.left,
+        e.clientY - r.top,
+        tgt.k * Math.exp(-e.deltaY * 0.0016),
+      );
     },
     { passive: false },
   );
@@ -875,7 +974,6 @@ export function initAscent(o: {
     tgt.y = BOUNDS.y0 + (fy - miniMap.oy) / miniMap.s;
   });
 
-  /* ---------- loop ---------- */
   function resize() {
     poke();
     const r = root.getBoundingClientRect();
@@ -888,12 +986,17 @@ export function initAscent(o: {
   }
   function frame(now: number) {
     if (destroyed) return;
-    /* Full speed only while something moves; otherwise about 12 fps for the ambient drift, none with reduced motion. */
     const settled =
       Math.abs(cam.x - tgt.x) * cam.k < 0.3 &&
       Math.abs(cam.y - tgt.y) * cam.k < 0.3 &&
       Math.abs(Math.log(tgt.k / cam.k)) < 0.002;
-    const busy = intro.on || ptrs.size > 0 || now < activeUntil || !settled || Math.abs(vel.x) > 0.01 || Math.abs(vel.y) > 0.01;
+    const busy =
+      intro.on ||
+      ptrs.size > 0 ||
+      now < activeUntil ||
+      !settled ||
+      Math.abs(vel.x) > 0.01 ||
+      Math.abs(vel.y) > 0.01;
     if (!busy && (RM || now - lastDraw < 80)) {
       raf = requestAnimationFrame(frame);
       return;
