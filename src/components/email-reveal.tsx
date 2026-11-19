@@ -6,7 +6,6 @@ import { Copy, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 interface Props {
-  /** Base64-encoded address. It is decoded only after a click, so it is not in the page source. */
   enc: string;
   kind: "link" | "cta";
   className?: string;
@@ -23,19 +22,24 @@ export function EmailReveal({ enc, kind, className, children }: Props) {
       await navigator.clipboard.writeText(address);
       setCopied(true);
       window.setTimeout(() => setCopied(false), 1800);
-    } catch {
-      /* clipboard unavailable: the address is selectable text */
-    }
+    } catch {}
   };
 
   if (!address) {
     return kind === "cta" ? (
-      <Button className="h-9 rounded-full px-4" onClick={() => setAddress(atob(enc))}>
+      <Button
+        className="h-9 rounded-full px-4"
+        onClick={() => setAddress(atob(enc))}
+      >
         <Mail className="mr-2 h-4 w-4" />
         {children}
       </Button>
     ) : (
-      <button type="button" className={className} onClick={() => setAddress(atob(enc))}>
+      <button
+        type="button"
+        className={className}
+        onClick={() => setAddress(atob(enc))}
+      >
         {children}
       </button>
     );
@@ -43,7 +47,14 @@ export function EmailReveal({ enc, kind, className, children }: Props) {
 
   return (
     <span className="inline-flex items-center gap-2">
-      <a href={`mailto:${address}`} className={kind === "cta" ? "text-sm font-medium underline underline-offset-4" : className}>
+      <a
+        href={`mailto:${address}`}
+        className={
+          kind === "cta"
+            ? "text-sm font-medium underline underline-offset-4"
+            : className
+        }
+      >
         {address}
       </a>
       <button

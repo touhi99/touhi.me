@@ -10,7 +10,9 @@ export function SectionHeading({ index, title, aside }: Props) {
   return (
     <div className="flex items-end justify-between gap-4 border-b border-border pb-3">
       <h2 className="flex items-baseline gap-3 text-lg font-semibold tracking-tight">
-        <span className="font-mono text-xs font-medium text-brand">{index}</span>
+        <span className="font-mono text-xs font-medium text-brand">
+          {index}
+        </span>
         {title}
       </h2>
       {aside ? (

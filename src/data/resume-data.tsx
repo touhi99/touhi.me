@@ -6,7 +6,7 @@ import CDGOLogo from "../images/logos/cdgo.png";
 import ClevertechLogo from "../images/logos/clevertech.png";
 import EvercastLogo from "../images/logos/evercast.svg";
 import Howdy from "../images/logos/howdy.png";
-import TouhiMeLogo from "../images/logos/touhi.svg"
+import TouhiMeLogo from "../images/logos/touhi.svg";
 import JojoMobileLogo from "../images/logos/jojomobile.png";
 import MonitoLogo from "../images/logos/monito.svg";
 import MobileVikingsLogo from "../images/logos/mv.png";
@@ -65,7 +65,7 @@ export const RESUME_DATA = {
       degree: "Bachelor's Degree in Computer Science and Engineering",
       start: "2011",
       end: "2015",
-    }
+    },
   ],
   work: [
     {
@@ -158,14 +158,7 @@ export const RESUME_DATA = {
     },
     {
       title: "Engineering & Data",
-      skills: [
-        "Python",
-        "FastAPI",
-        "SQL",
-        "Cypher",
-        "Vector DB",
-        "Graph DB",
-      ],
+      skills: ["Python", "FastAPI", "SQL", "Cypher", "Vector DB", "Graph DB"],
     },
     {
       title: "ML & Platform",
@@ -184,7 +177,14 @@ export const RESUME_DATA = {
     {
       title: "Rivals Atlas",
       featured: true,
-      techStack: ["Python", "FastAPI", "Haystack", "Knowledge Graph", "LadybugDB", "React"],
+      techStack: [
+        "Python",
+        "FastAPI",
+        "Haystack",
+        "Knowledge Graph",
+        "LadybugDB",
+        "React",
+      ],
       description:
         "Analyse players' own gaming stat matches with a dashboard and a knowledge-graph agent that answers from checkable queries",
       logo: TouhiMeLogo,
@@ -196,7 +196,15 @@ export const RESUME_DATA = {
     {
       title: "A Voice-based LLM Crew Agent",
       featured: true,
-      techStack: ["Python", "OpenAI", "LangChain", "CrewAI", "Streamlit", "Elevenlabs", "Crawler"],
+      techStack: [
+        "Python",
+        "OpenAI",
+        "LangChain",
+        "CrewAI",
+        "Streamlit",
+        "Elevenlabs",
+        "Crawler",
+      ],
       description:
         "A text/voice-based multi-agent system with RAG in specialized domain",
       logo: BarepapersLogo,
@@ -244,12 +252,9 @@ export const RESUME_DATA = {
     {
       title: "DA-Time",
       featured: true,
-      techStack: [
-        "Python",
-        "BERT",
-        "Keras",
-      ],
-      description: "A domain-adapted temporal expression recognizer for the English Voice Assistant domain", 
+      techStack: ["Python", "BERT", "Keras"],
+      description:
+        "A domain-adapted temporal expression recognizer for the English Voice Assistant domain",
       logo: ConsultlyLogo,
       link: {
         label: "Github",
@@ -258,12 +263,9 @@ export const RESUME_DATA = {
     },
     {
       title: "AI Music Generation",
-      techStack: [
-        "Python",
-        "Language Modeling",
-        "PyTorch",
-      ],
-      description: "A simple language modeling project to generate music trained by MIDI files pattern", 
+      techStack: ["Python", "Language Modeling", "PyTorch"],
+      description:
+        "A simple language modeling project to generate music trained by MIDI files pattern",
       logo: ConsultlyLogo,
       link: {
         label: "Github",
@@ -306,7 +308,8 @@ export const RESUME_DATA = {
   ],
   publications: [
     {
-      title: "Enhancing Pipeline-Based Conversational Agents with Large Language Models",
+      title:
+        "Enhancing Pipeline-Based Conversational Agents with Large Language Models",
       techStack: ["Python", "GPT-4"],
       description:
         "This study examines enhancing pipeline-based conversational agents with GPT-4, focusing on a hybrid approach that combines LLM strengths with existing system safeguards.        ",
@@ -317,14 +320,12 @@ export const RESUME_DATA = {
       },
     },
     {
-      title: "New Domain, Major Effort? How Much Data is Necessary to Adapt a Temporal Tagger to the Voice Assistant Domain",
-      techStack: [
-        "Python",
-        "BERT",
-        "Keras",
-      ],
-      description: "The study introduces DA-Time, a hybrid temporal tagger for voice assistants, \
-      proving that minimal in-domain data via transfer learning significantly enhances temporal expression recognition in diverse domains.", 
+      title:
+        "New Domain, Major Effort? How Much Data is Necessary to Adapt a Temporal Tagger to the Voice Assistant Domain",
+      techStack: ["Python", "BERT", "Keras"],
+      description:
+        "The study introduces DA-Time, a hybrid temporal tagger for voice assistants, \
+      proving that minimal in-domain data via transfer learning significantly enhances temporal expression recognition in diverse domains.",
       logo: ConsultlyLogo,
       link: {
         label: "aclweb",
@@ -332,7 +333,8 @@ export const RESUME_DATA = {
       },
     },
     {
-      title: "PÂTÉ: A Corpus of Temporal Expressions for the In-car Voice Assistant Domain",
+      title:
+        "PÂTÉ: A Corpus of Temporal Expressions for the In-car Voice Assistant Domain",
       techStack: ["Python"],
       description:
         "This study introduces a crowdsourcing method to collect and annotate natural-language commands with temporal expressions for AI voice assistants, \

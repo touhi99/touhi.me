@@ -24,7 +24,6 @@ import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 interface Props {
   links: { url: string; title: string }[];
-  /** Base64-encoded address, decoded only when an email action is chosen. */
   emailEnc?: string;
 }
 
@@ -126,10 +125,7 @@ export const CommandMenu = ({ links, emailEnc }: Props) => {
             <span>Toggle theme</span>
           </CommandItem>
           {emailEnc ? (
-            <CommandItem
-              value="copy email address"
-              onSelect={copyEmail}
-            >
+            <CommandItem value="copy email address" onSelect={copyEmail}>
               <Copy className="mr-2 h-4 w-4" />
               <span>{copied ? "Email copied" : "Copy email address"}</span>
             </CommandItem>

@@ -44,8 +44,10 @@ export default function Page() {
     avatar: RESUME_DATA.avatarUrl,
     summary:
       "I help enterprise teams design, build, and ship production-grade Generative AI applications on the Haystack Enterprise Platform.",
-    social: RESUME_DATA.contact.social.map((s) => ({ name: s.name, url: s.url })),
-    /* Not in the page source as plain text; decoded in the browser when someone asks for it. */
+    social: RESUME_DATA.contact.social.map((s) => ({
+      name: s.name,
+      url: s.url,
+    })),
     emailEnc: Buffer.from(RESUME_DATA.contact.email).toString("base64"),
   };
 

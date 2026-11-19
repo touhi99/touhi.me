@@ -52,7 +52,10 @@ export function AscentScene({
   const [coachWanted, setCoachWanted] = useState(false);
   const [touch, setTouch] = useState(false);
 
-  const byId = useMemo(() => new Map(graph.nodes.map((n) => [n.id, n])), [graph]);
+  const byId = useMemo(
+    () => new Map(graph.nodes.map((n) => [n.id, n])),
+    [graph],
+  );
 
   useEffect(() => {
     const root = rootRef.current;
@@ -114,9 +117,7 @@ export function AscentScene({
     let seen = false;
     try {
       seen = localStorage.getItem("touhi.coach.v1") === "1";
-    } catch {
-      /* ignore */
-    }
+    } catch {}
     if (!seen || location.hash === "#intro") setCoachWanted(true);
   }, []);
 
@@ -124,9 +125,7 @@ export function AscentScene({
     setCoachWanted(false);
     try {
       localStorage.setItem("touhi.coach.v1", "1");
-    } catch {
-      /* ignore */
-    }
+    } catch {}
   }, []);
 
   const go = useCallback((id: string) => engine.current?.select(id), []);
@@ -165,7 +164,9 @@ export function AscentScene({
             aria-expanded={expanded}
             aria-label="Profile"
             onClick={() => setExpanded((v) => !v)}
-            onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && setExpanded((v) => !v)}
+            onKeyDown={(e) =>
+              (e.key === "Enter" || e.key === " ") && setExpanded((v) => !v)
+            }
           >
             <Image
               className="asc-avatar"
@@ -189,25 +190,49 @@ export function AscentScene({
             <Link className="asc-btn asc-pri" href="/cv">
               Read as CV
             </Link>
-            <button className="asc-btn" type="button" onClick={() => engine.current?.select("contact")}>
+            <button
+              className="asc-btn"
+              type="button"
+              onClick={() => engine.current?.select("contact")}
+            >
               Say hello
             </button>
             {profile.social.map((s) => (
-              <a key={s.name} className="asc-btn" href={s.url} target="_blank" rel="noopener noreferrer">
+              <a
+                key={s.name}
+                className="asc-btn"
+                href={s.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {s.name}
               </a>
             ))}
-            <button className="asc-btn" type="button" onClick={() => setSearchOpen(true)}>
+            <button
+              className="asc-btn"
+              type="button"
+              onClick={() => setSearchOpen(true)}
+            >
               Search <kbd className="asc-kbd">{keyHint}</kbd>
             </button>
-            <button className="asc-btn" type="button" onClick={() => engine.current?.fit()}>
+            <button
+              className="asc-btn"
+              type="button"
+              onClick={() => engine.current?.fit()}
+            >
               Fit all
             </button>
           </div>
         </div>
       </header>
 
-      <canvas ref={miniRef} className="asc-mini" width={264} height={300} aria-hidden="true" />
+      <canvas
+        ref={miniRef}
+        className="asc-mini"
+        width={264}
+        height={300}
+        aria-hidden="true"
+      />
 
       {!st.intro && (
         <nav className="asc-path" aria-label="Experience path">
@@ -230,9 +255,20 @@ export function AscentScene({
               engine.current?.step(1);
             }}
           >
-            {next ? (st.pathIdx < 0 ? (st.done ? "Replay tour →" : "Take the tour →") : `Next: ${next.title} →`) : "End"}
+            {next
+              ? st.pathIdx < 0
+                ? st.done
+                  ? "Replay tour →"
+                  : "Take the tour →"
+                : `Next: ${next.title} →`
+              : "End"}
           </button>
-          <button className="asc-btn asc-dock-extra asc-icon" type="button" aria-label="Search" onClick={() => setSearchOpen(true)}>
+          <button
+            className="asc-btn asc-dock-extra asc-icon"
+            type="button"
+            aria-label="Search"
+            onClick={() => setSearchOpen(true)}
+          >
             <SearchIcon size={18} aria-hidden="true" />
           </button>
           <Link className="asc-btn asc-dock-extra" href="/cv">
@@ -277,7 +313,11 @@ export function AscentScene({
         </div>
       )}
       {st.intro && (
-        <button className="asc-btn asc-skip" type="button" onClick={() => engine.current?.skipIntro()}>
+        <button
+          className="asc-btn asc-skip"
+          type="button"
+          onClick={() => engine.current?.skipIntro()}
+        >
           Skip intro
         </button>
       )}
@@ -308,7 +348,12 @@ export function AscentScene({
         />
       )}
 
-      <aside ref={panelRef} className="asc-panel" aria-live="polite" aria-label="Details">
+      <aside
+        ref={panelRef}
+        className="asc-panel"
+        aria-live="polite"
+        aria-label="Details"
+      >
         {sel && (
           <Panel
             key={sel.id}
@@ -321,7 +366,6 @@ export function AscentScene({
           />
         )}
       </aside>
-
     </div>
   );
 }
@@ -346,18 +390,29 @@ function Panel({
   const isHub = n.type === "group" && children.length > 0;
   const rowHub = isHub && children[0].type !== "skill";
   const highlights = n.hls ? children : [];
-  const meta = n.type === "role" && n.tags?.length ? `${n.sub} · ${n.tags.join(" / ")}` : n.sub;
+  const meta =
+    n.type === "role" && n.tags?.length
+      ? `${n.sub} · ${n.tags.join(" / ")}`
+      : n.sub;
   const usedIn =
     n.type === "skill"
       ? graph.edges
           .filter((e) => e.kind === "k" && e.b === n.id)
           .map((e) => graph.nodes.find((m) => m.id === e.a)!)
       : [];
-  const showTech = n.tags && n.tags.length > 0 && (n.type === "project" || n.type === "paper" || n.type === "group");
+  const showTech =
+    n.tags &&
+    n.tags.length > 0 &&
+    (n.type === "project" || n.type === "paper" || n.type === "group");
   const links = n.links ?? [];
   return (
     <div style={{ ["--c" as string]: color }}>
-      <button className="asc-x" type="button" aria-label="Close" onClick={onClose}>
+      <button
+        className="asc-x"
+        type="button"
+        aria-label="Close"
+        onClick={onClose}
+      >
         ×
       </button>
       <div className="asc-kind">
@@ -412,7 +467,12 @@ function Panel({
           <h3>Skills</h3>
           <div className="asc-chips">
             {children.map((c) => (
-              <button key={c.id} type="button" className="asc-chip" onClick={() => onGo(c.id)}>
+              <button
+                key={c.id}
+                type="button"
+                className="asc-chip"
+                onClick={() => onGo(c.id)}
+              >
                 {c.title}
               </button>
             ))}
@@ -426,7 +486,13 @@ function Panel({
           <div className="asc-chips">
             {n.tags!.map((t) =>
               hasSkill(t) ? (
-                <button key={t} type="button" className="asc-chip" title={`Show everything that uses ${t}`} onClick={() => onGo(skillId(t))}>
+                <button
+                  key={t}
+                  type="button"
+                  className="asc-chip"
+                  title={`Show everything that uses ${t}`}
+                  onClick={() => onGo(skillId(t))}
+                >
                   {t}
                 </button>
               ) : (
@@ -465,7 +531,9 @@ function Panel({
               target="_blank"
               rel="noopener noreferrer"
             >
-              {links.length === 1 && label.toLowerCase() === "github" ? "Open on GitHub ↗" : `${label} ↗`}
+              {links.length === 1 && label.toLowerCase() === "github"
+                ? "Open on GitHub ↗"
+                : `${label} ↗`}
             </a>
           ))}
         </p>
@@ -501,7 +569,9 @@ function Search({
   const items = useMemo(() => {
     const query = q.trim().toLowerCase();
     if (!query) {
-      return graph.nodes.filter((n) => ["deepset", "arch", "research", "oss", "gen", "contact"].includes(n.id));
+      return graph.nodes.filter((n) =>
+        ["deepset", "arch", "research", "oss", "gen", "contact"].includes(n.id),
+      );
     }
     return graph.nodes
       .map((n) => ({ n, s: score(n, query) }))
@@ -531,7 +601,10 @@ function Search({
   };
 
   return (
-    <div className="asc-search" onMouseDown={(e) => e.target === e.currentTarget && onClose()}>
+    <div
+      className="asc-search"
+      onMouseDown={(e) => e.target === e.currentTarget && onClose()}
+    >
       <div className="asc-search-box" role="dialog" aria-label="Search">
         <input
           ref={inputRef}
@@ -544,7 +617,9 @@ function Search({
           autoComplete="off"
         />
         <ul id="asc-results" role="listbox">
-          {items.length === 0 && <li className="asc-empty">Nothing matches “{q}”.</li>}
+          {items.length === 0 && (
+            <li className="asc-empty">Nothing matches “{q}”.</li>
+          )}
           {items.map((n, i) => (
             <li key={n.id} role="option" aria-selected={i === idx}>
               <button
@@ -563,13 +638,14 @@ function Search({
             </li>
           ))}
         </ul>
-        <div className="asc-search-hint">↑↓ to move · Enter to open · Esc to close</div>
+        <div className="asc-search-hint">
+          ↑↓ to move · Enter to open · Esc to close
+        </div>
       </div>
     </div>
   );
 }
 
-/** The address is kept out of the page source and decoded only after a click. */
 function EmailReveal({ enc }: { enc: string }) {
   const [address, setAddress] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
@@ -579,14 +655,16 @@ function EmailReveal({ enc }: { enc: string }) {
       await navigator.clipboard.writeText(address);
       setCopied(true);
       setTimeout(() => setCopied(false), 1800);
-    } catch {
-      /* clipboard unavailable: the address is selectable text */
-    }
+    } catch {}
   };
   if (!address) {
     return (
       <p style={{ margin: 0 }}>
-        <button type="button" className="asc-link" onClick={() => setAddress(atob(enc))}>
+        <button
+          type="button"
+          className="asc-link"
+          onClick={() => setAddress(atob(enc))}
+        >
           Show email
         </button>
       </p>
@@ -598,10 +676,19 @@ function EmailReveal({ enc }: { enc: string }) {
         {address}
       </p>
       <p style={{ margin: 0 }}>
-        <a className="asc-link" style={{ marginTop: 8 }} href={`mailto:${address}`}>
+        <a
+          className="asc-link"
+          style={{ marginTop: 8 }}
+          href={`mailto:${address}`}
+        >
           Write an email
         </a>
-        <button type="button" className="asc-link alt" style={{ marginTop: 8 }} onClick={copy}>
+        <button
+          type="button"
+          className="asc-link alt"
+          style={{ marginTop: 8 }}
+          onClick={copy}
+        >
           {copied ? "Copied" : "Copy"}
         </button>
       </p>
