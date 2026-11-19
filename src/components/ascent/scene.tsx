@@ -135,7 +135,7 @@ export function AscentScene({
   const pathLabel =
     st.pathIdx < 0
       ? st.done
-        ? "You have seen every role"
+        ? "Tour finished"
         : "Walk through the experience"
       : `${byId.get(graph.path[st.pathIdx])!.sub.split(" · ")[0]} · ${st.pathIdx + 1} of ${graph.path.length}`;
 
@@ -252,7 +252,7 @@ export function AscentScene({
       )}
       {showCoach && (
         <div className="asc-coach" role="dialog" aria-label="How to explore">
-          <b>Your career as a map.</b>
+          <b>How to read the map</b>
           <p>
             Time runs up the line, newest role at the top.{" "}
             {touch
@@ -284,7 +284,7 @@ export function AscentScene({
 
       {toast && (
         <div className="asc-toast" role="status">
-          <span>You have seen the full experience.</span>
+          <span>End of the tour.</span>
           <button
             type="button"
             onClick={() => {
@@ -366,7 +366,7 @@ function Panel({
       </div>
       <h2>{n.title}</h2>
       {meta && <div className="asc-meta">{meta}</div>}
-      <p className="asc-body">{n.body}</p>
+      {n.body && <p className="asc-body">{n.body}</p>}
       {n.text && (
         <p className="asc-body" style={{ marginTop: 8 }}>
           {n.text.join(" · ")}

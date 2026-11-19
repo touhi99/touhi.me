@@ -163,7 +163,7 @@ export function buildGraph(data: Resume): Graph {
     x: 0,
     y: -2480,
     r: 14,
-    body: "Open to a conversation about GenAI, RAG and agents. Email is revealed on request.",
+    body: "Open to a conversation about GenAI, RAG and agents.",
     links: data.contact.social.map((s) => [s.name, s.url] as [string, string]),
   });
 
@@ -285,7 +285,7 @@ export function buildGraph(data: Resume): Graph {
         x: c.x + Math.cos(a) * R,
         y: c.y + Math.sin(a) * R,
         r: 7,
-        body: `Part of ${g.title}.`,
+        body: "",
         parent: c.id,
       });
     });
@@ -301,7 +301,7 @@ export function buildGraph(data: Resume): Graph {
     x: 620,
     y: -1640,
     r: 19,
-    body: "Three publications: temporal expression recognition for voice assistants, and LLM-enhanced conversational agents.",
+    body: "Temporal expression recognition for voice assistants, and LLM-enhanced conversational agents.",
   });
   add({
     id: "oss",
@@ -313,7 +313,7 @@ export function buildGraph(data: Resume): Graph {
     x: 900,
     y: -1740,
     r: 19,
-    body: "Ten repositories on GitHub: agents, knowledge graphs, NLP and language modeling.",
+    body: "Repositories on GitHub: agents, knowledge graphs, NLP and language modeling.",
   });
 
   /* Edges */
