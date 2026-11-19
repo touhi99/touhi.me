@@ -9,6 +9,7 @@ import { PrintButton } from "./print-button";
 import { ThemeToggle } from "./theme-toggle";
 
 const NAV_LINKS = [
+  { href: "/", label: "Interactive map" },
   { href: "#about", label: "About" },
   { href: "#experience", label: "Experience" },
   { href: "#skills", label: "Skills" },
@@ -59,7 +60,7 @@ export function SiteHeader() {
             <a
               key={link.href}
               href={link.href}
-              className="rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="whitespace-nowrap rounded-md px-2.5 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
             >
               {link.label}
             </a>

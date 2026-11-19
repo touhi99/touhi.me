@@ -24,7 +24,8 @@ import { DialogDescription, DialogTitle } from "@/components/ui/dialog";
 
 interface Props {
   links: { url: string; title: string }[];
-  email?: string;
+  /** Base64-encoded address, decoded only when an email action is chosen. */
+  emailEnc?: string;
 }
 
 const SECTIONS = [
@@ -36,7 +37,7 @@ const SECTIONS = [
   { href: "#publications", label: "Publications" },
 ];
 
-export const CommandMenu = ({ links, email }: Props) => {
+export const CommandMenu = ({ links, emailEnc }: Props) => {
   const [open, setOpen] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   const { setTheme } = useTheme();
@@ -77,9 +78,9 @@ export const CommandMenu = ({ links, email }: Props) => {
   };
 
   const copyEmail = async () => {
-    if (!email) return;
+    if (!emailEnc) return;
     try {
-      await navigator.clipboard.writeText(email);
+      await navigator.clipboard.writeText(atob(emailEnc));
       setCopied(true);
       window.setTimeout(() => setOpen(false), 600);
     } catch {
@@ -124,21 +125,21 @@ export const CommandMenu = ({ links, email }: Props) => {
             <SunMoon className="mr-2 h-4 w-4" />
             <span>Toggle theme</span>
           </CommandItem>
-          {email ? (
+          {emailEnc ? (
             <CommandItem
-              value={`copy email ${email}`}
+              value="copy email address"
               onSelect={copyEmail}
             >
               <Copy className="mr-2 h-4 w-4" />
               <span>{copied ? "Email copied" : "Copy email address"}</span>
             </CommandItem>
           ) : null}
-          {email ? (
+          {emailEnc ? (
             <CommandItem
               value="send email contact"
               onSelect={() => {
                 setOpen(false);
-                window.location.href = `mailto:${email}`;
+                window.location.href = `mailto:${atob(emailEnc)}`;
               }}
             >
               <Mail className="mr-2 h-4 w-4" />
