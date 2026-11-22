@@ -194,6 +194,18 @@ export const RESUME_DATA = {
       },
     },
     {
+      title: "Backtrail",
+      featured: true,
+      techStack: ["Rust", "SQLite", "React", "TypeScript"],
+      description:
+        "Builds a knowledge graph from coding-agent sessions, notes and git history, so each new session starts with what earlier ones settled",
+      logo: TouhiMeLogo,
+      link: {
+        label: "Github",
+        href: "https://github.com/touhi99/backtrail",
+      },
+    },
+    {
       title: "A Voice-based LLM Crew Agent",
       featured: true,
       techStack: [
@@ -239,7 +251,6 @@ export const RESUME_DATA = {
     },
     {
       title: "Tags generation",
-      featured: true,
       techStack: ["Python", "LLM", "Mistral-7B"],
       description:
         "Simple prototyping of generating tags from forums with Open-source LLM",
