@@ -102,6 +102,13 @@ const PROJECTS = [
     y: -2240,
     big: true,
   },
+  {
+    id: "backtrail",
+    sub: "Knowledge graph of agent sessions",
+    x: 600,
+    y: -2340,
+    big: true,
+  },
   { id: "crew", sub: "Multi-agent with RAG", x: 1020, y: -2070, big: true },
   {
     id: "search",
@@ -155,6 +162,7 @@ const GROUPS = [
 
 const PROJECT_SKILLS: Record<string, string[]> = {
   atlas: ["Python", "FastAPI", "Haystack", "Graph DB"],
+  backtrail: ["Graph DB", "SQL", "LLM"],
   crew: ["Python", "LangChain", "Multi-agent Systems", "RAG", "LLM"],
   search: ["Python", "LangChain", "Multi-agent Systems", "LLM"],
   kg: ["Python", "LangChain", "Cypher", "Graph DB", "LLM"],
